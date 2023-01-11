@@ -3,22 +3,22 @@ import { enNavbar, zhNavbar } from "./navbar/index.js";
 import { enSidebar, zhSidebar } from "./sidebar/index.js";
 
 export default hopeTheme({
-  hostname: "https://mister-hope.github.io",
+  hostname: "https://tcreograph.com/",
 
   author: {
-    name: "Mr.Hope",
-    url: "https://mrhope.site",
+    name: "TCreograph",
+    url: "https://tcreograph.com/",
   },
 
   iconAssets: "iconfont",
 
-  logo: "/logo.svg",
+  logo: "/TCreograph1.png",
 
-  repo: "vuepress-theme-hope/vuepress-theme-hope",
+  repo: "TCreograph/TCreograph.github.io",
 
-  docsDir: "docs",
+  docsDir: "src",
 
-  pageInfo: ["Author", "Original", "Date", "Category", "Tag", "ReadingTime"],
+  pageInfo: ["Author", "Original", "Date", "Category", "Tag", "ReadingTime","Word","PageView"],
 
   blog: {
     medias: {
