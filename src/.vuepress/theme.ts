@@ -12,7 +12,7 @@ export default hopeTheme({
 
   iconAssets: "iconfont",
 
-  logo: "/TCreograph1.png",
+  logo: "/TCreograph2.png",
 
   repo: "TCreograph/TCreograph.github.io",
 
