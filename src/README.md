@@ -3,9 +3,9 @@ home: true
 layout: BlogHome
 icon: home
 title: Blog Home
-heroImage: /logo.svg
-heroText: the name of your blog
-tagline: You can put your slogan here
+heroImage: /TCreograph2.png
+heroText: TCreograph
+tagline: 二次元爱好者——主推MC，phigros，原神
 heroFullScreen: true
 projects:
   - icon: project
