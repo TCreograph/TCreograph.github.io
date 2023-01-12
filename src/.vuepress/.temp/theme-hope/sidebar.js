@@ -1,1 +1,1 @@
-export const sidebarData = {"/demo/":["page.md","markdown.md","disable.md","encrypt.md"],"/posts/":[{"text":"Apple","prefix":"apple/","collapsible":true,"children":["1.md","2.md","3.md","4.md"]},{"text":"Banana","prefix":"banana/","collapsible":true,"children":["1.md","2.md","3.md","4.md"]},"cherry.md","dragonfruit.md","strawberry.md","tomato.md"]};
+export const sidebarData = {};
