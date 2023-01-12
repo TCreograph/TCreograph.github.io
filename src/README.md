@@ -5,7 +5,7 @@ icon: home
 title: Blog Home
 heroImage: /TCreograph2.png
 heroText: TCreograph
-tagline: 二次元爱好者——主推MC，phigros，原神
+tagline: 二次元爱好者——主推MC，Phigros，原神
 heroFullScreen: true
 projects:
   - icon: project
