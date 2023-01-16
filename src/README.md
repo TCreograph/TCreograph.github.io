@@ -1,6 +1,6 @@
 ---
 home: true
-bgImage: /background2.png
+bgImage: /background4.png
 layout: BlogHome
 icon: home
 title: Blog Home

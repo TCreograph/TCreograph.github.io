@@ -79,7 +79,7 @@ export default hopeTheme({
         name:"TCreograph",
         avatar:"/TCreograph2.png",//设置头像
         description: "",
-        intro: "/zh/intro.html",
+        intro: "/about.md",
       },
 
       // page meta
