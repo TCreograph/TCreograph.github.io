@@ -10,6 +10,7 @@ import clientConfig8 from 'D:/TCreograph/TCreograph/node_modules/vuepress-plugin
 import clientConfig9 from 'D:/TCreograph/TCreograph/src/.vuepress/.temp/md-enhance/config.js'
 import clientConfig10 from 'D:/TCreograph/TCreograph/node_modules/vuepress-plugin-photo-swipe/lib/client/config.js'
 import clientConfig11 from 'D:/TCreograph/TCreograph/src/.vuepress/.temp/theme-hope/config.js'
+import clientConfig12 from 'D:/TCreograph/TCreograph/node_modules/@vuepress/plugin-search/lib/client/config.js'
 
 export const clientConfigs = [
   clientConfig0,
@@ -24,4 +25,5 @@ export const clientConfigs = [
   clientConfig9,
   clientConfig10,
   clientConfig11,
+  clientConfig12,
 ]
