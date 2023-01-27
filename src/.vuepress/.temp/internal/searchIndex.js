@@ -236,98 +236,6 @@ export const searchIndex = [
     "extraFields": []
   },
   {
-    "title": "Banana 1",
-    "headers": [
-      {
-        "level": 2,
-        "title": "Heading 2",
-        "slug": "heading-2",
-        "link": "#heading-2",
-        "children": [
-          {
-            "level": 3,
-            "title": "Heading 3",
-            "slug": "heading-3",
-            "link": "#heading-3",
-            "children": []
-          }
-        ]
-      }
-    ],
-    "path": "/posts/banana/1.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "Banana 2",
-    "headers": [
-      {
-        "level": 2,
-        "title": "Heading 2",
-        "slug": "heading-2",
-        "link": "#heading-2",
-        "children": [
-          {
-            "level": 3,
-            "title": "Heading 3",
-            "slug": "heading-3",
-            "link": "#heading-3",
-            "children": []
-          }
-        ]
-      }
-    ],
-    "path": "/posts/banana/2.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "Banana 3",
-    "headers": [
-      {
-        "level": 2,
-        "title": "Heading 2",
-        "slug": "heading-2",
-        "link": "#heading-2",
-        "children": [
-          {
-            "level": 3,
-            "title": "Heading 3",
-            "slug": "heading-3",
-            "link": "#heading-3",
-            "children": []
-          }
-        ]
-      }
-    ],
-    "path": "/posts/banana/3.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "Banana 4",
-    "headers": [
-      {
-        "level": 2,
-        "title": "Heading 2",
-        "slug": "heading-2",
-        "link": "#heading-2",
-        "children": [
-          {
-            "level": 3,
-            "title": "Heading 3",
-            "slug": "heading-3",
-            "link": "#heading-3",
-            "children": []
-          }
-        ]
-      }
-    ],
-    "path": "/posts/banana/4.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
     "title": "Apple 1",
     "headers": [
       {
@@ -416,6 +324,98 @@ export const searchIndex = [
       }
     ],
     "path": "/posts/apple/4.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "Banana 1",
+    "headers": [
+      {
+        "level": 2,
+        "title": "Heading 2",
+        "slug": "heading-2",
+        "link": "#heading-2",
+        "children": [
+          {
+            "level": 3,
+            "title": "Heading 3",
+            "slug": "heading-3",
+            "link": "#heading-3",
+            "children": []
+          }
+        ]
+      }
+    ],
+    "path": "/posts/banana/1.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "Banana 2",
+    "headers": [
+      {
+        "level": 2,
+        "title": "Heading 2",
+        "slug": "heading-2",
+        "link": "#heading-2",
+        "children": [
+          {
+            "level": 3,
+            "title": "Heading 3",
+            "slug": "heading-3",
+            "link": "#heading-3",
+            "children": []
+          }
+        ]
+      }
+    ],
+    "path": "/posts/banana/2.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "Banana 3",
+    "headers": [
+      {
+        "level": 2,
+        "title": "Heading 2",
+        "slug": "heading-2",
+        "link": "#heading-2",
+        "children": [
+          {
+            "level": 3,
+            "title": "Heading 3",
+            "slug": "heading-3",
+            "link": "#heading-3",
+            "children": []
+          }
+        ]
+      }
+    ],
+    "path": "/posts/banana/3.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "Banana 4",
+    "headers": [
+      {
+        "level": 2,
+        "title": "Heading 2",
+        "slug": "heading-2",
+        "link": "#heading-2",
+        "children": [
+          {
+            "level": 3,
+            "title": "Heading 3",
+            "slug": "heading-3",
+            "link": "#heading-3",
+            "children": []
+          }
+        ]
+      }
+    ],
+    "path": "/posts/banana/4.html",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -621,98 +621,6 @@ export const searchIndex = [
     "extraFields": []
   },
   {
-    "title": "香蕉 1",
-    "headers": [
-      {
-        "level": 2,
-        "title": "标题 2",
-        "slug": "标题-2",
-        "link": "#标题-2",
-        "children": [
-          {
-            "level": 3,
-            "title": "标题 3",
-            "slug": "标题-3",
-            "link": "#标题-3",
-            "children": []
-          }
-        ]
-      }
-    ],
-    "path": "/zh/posts/banana/1.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "香蕉 2",
-    "headers": [
-      {
-        "level": 2,
-        "title": "标题 2",
-        "slug": "标题-2",
-        "link": "#标题-2",
-        "children": [
-          {
-            "level": 3,
-            "title": "标题 3",
-            "slug": "标题-3",
-            "link": "#标题-3",
-            "children": []
-          }
-        ]
-      }
-    ],
-    "path": "/zh/posts/banana/2.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "香蕉 3",
-    "headers": [
-      {
-        "level": 2,
-        "title": "标题 2",
-        "slug": "标题-2",
-        "link": "#标题-2",
-        "children": [
-          {
-            "level": 3,
-            "title": "标题 3",
-            "slug": "标题-3",
-            "link": "#标题-3",
-            "children": []
-          }
-        ]
-      }
-    ],
-    "path": "/zh/posts/banana/3.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "香蕉 4",
-    "headers": [
-      {
-        "level": 2,
-        "title": "标题 2",
-        "slug": "标题-2",
-        "link": "#标题-2",
-        "children": [
-          {
-            "level": 3,
-            "title": "标题 3",
-            "slug": "标题-3",
-            "link": "#标题-3",
-            "children": []
-          }
-        ]
-      }
-    ],
-    "path": "/zh/posts/banana/4.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
     "title": "苹果 1",
     "headers": [
       {
@@ -805,6 +713,98 @@ export const searchIndex = [
     "extraFields": []
   },
   {
+    "title": "香蕉 1",
+    "headers": [
+      {
+        "level": 2,
+        "title": "标题 2",
+        "slug": "标题-2",
+        "link": "#标题-2",
+        "children": [
+          {
+            "level": 3,
+            "title": "标题 3",
+            "slug": "标题-3",
+            "link": "#标题-3",
+            "children": []
+          }
+        ]
+      }
+    ],
+    "path": "/zh/posts/banana/1.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "香蕉 2",
+    "headers": [
+      {
+        "level": 2,
+        "title": "标题 2",
+        "slug": "标题-2",
+        "link": "#标题-2",
+        "children": [
+          {
+            "level": 3,
+            "title": "标题 3",
+            "slug": "标题-3",
+            "link": "#标题-3",
+            "children": []
+          }
+        ]
+      }
+    ],
+    "path": "/zh/posts/banana/2.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "香蕉 3",
+    "headers": [
+      {
+        "level": 2,
+        "title": "标题 2",
+        "slug": "标题-2",
+        "link": "#标题-2",
+        "children": [
+          {
+            "level": 3,
+            "title": "标题 3",
+            "slug": "标题-3",
+            "link": "#标题-3",
+            "children": []
+          }
+        ]
+      }
+    ],
+    "path": "/zh/posts/banana/3.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "香蕉 4",
+    "headers": [
+      {
+        "level": 2,
+        "title": "标题 2",
+        "slug": "标题-2",
+        "link": "#标题-2",
+        "children": [
+          {
+            "level": 3,
+            "title": "标题 3",
+            "slug": "标题-3",
+            "link": "#标题-3",
+            "children": []
+          }
+        ]
+      }
+    ],
+    "path": "/zh/posts/banana/4.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
     "title": "",
     "headers": [],
     "path": "/404.html",
@@ -819,16 +819,16 @@ export const searchIndex = [
     "extraFields": []
   },
   {
-    "title": "Banana",
+    "title": "Apple",
     "headers": [],
-    "path": "/posts/banana/",
+    "path": "/posts/apple/",
     "pathLocale": "/",
     "extraFields": []
   },
   {
-    "title": "Apple",
+    "title": "Banana",
     "headers": [],
-    "path": "/posts/apple/",
+    "path": "/posts/banana/",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -840,16 +840,16 @@ export const searchIndex = [
     "extraFields": []
   },
   {
-    "title": "Banana",
+    "title": "Apple",
     "headers": [],
-    "path": "/zh/posts/banana/",
+    "path": "/zh/posts/apple/",
     "pathLocale": "/",
     "extraFields": []
   },
   {
-    "title": "Apple",
+    "title": "Banana",
     "headers": [],
-    "path": "/zh/posts/apple/",
+    "path": "/zh/posts/banana/",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -973,9 +973,9 @@ export const searchIndex = [
     "extraFields": []
   },
   {
-    "title": "Banana 分类",
+    "title": "Apple 分类",
     "headers": [],
-    "path": "/category/banana/",
+    "path": "/category/apple/",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -987,9 +987,9 @@ export const searchIndex = [
     "extraFields": []
   },
   {
-    "title": "Apple 分类",
+    "title": "Banana 分类",
     "headers": [],
-    "path": "/category/apple/",
+    "path": "/category/banana/",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -1085,9 +1085,9 @@ export const searchIndex = [
     "extraFields": []
   },
   {
-    "title": "香蕉 分类",
+    "title": "苹果 分类",
     "headers": [],
-    "path": "/category/%E9%A6%99%E8%95%89/",
+    "path": "/category/%E8%8B%B9%E6%9E%9C/",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -1099,9 +1099,9 @@ export const searchIndex = [
     "extraFields": []
   },
   {
-    "title": "苹果 分类",
+    "title": "香蕉 分类",
     "headers": [],
-    "path": "/category/%E8%8B%B9%E6%9E%9C/",
+    "path": "/category/%E9%A6%99%E8%95%89/",
     "pathLocale": "/",
     "extraFields": []
   },
