@@ -30,16 +30,14 @@ import {
   withDirectives,
   withKeys,
   withModifiers
-} from "./chunk-FFYGK5U6.js";
+} from "./chunk-CXZJNWNB.js";
 import {
+  __export,
+  __require,
   normalizeClass,
   normalizeStyle,
   toDisplayString
-} from "./chunk-NLVKWF7H.js";
-import {
-  __export,
-  __require
-} from "./chunk-F4AF7QOS.js";
+} from "./chunk-QPKDW67T.js";
 
 // node_modules/vue/compiler-sfc/index.mjs
 var compiler_sfc_exports = {};
@@ -14217,8 +14215,10 @@ function isComponent(tag2, props, context) {
     } else {
       if (p.name === "is") {
         return true;
-      } else if (// :is on plain element - only treat as component in compat mode
-      p.name === "bind" && isStaticArgOf(p.arg, "is") && false) {
+      } else if (
+        // :is on plain element - only treat as component in compat mode
+        p.name === "bind" && isStaticArgOf(p.arg, "is") && false
+      ) {
         return true;
       }
     }
@@ -18723,7 +18723,11 @@ var transformElement = (node2, context) => {
     let vnodeDirectives;
     let shouldUseBlock = (
       // dynamic component may resolve to plain elements
-      isDynamicComponent || vnodeTag === TELEPORT || vnodeTag === SUSPENSE || !isComponent2 && (tag2 === "svg" || tag2 === "foreignObject")
+      isDynamicComponent || vnodeTag === TELEPORT || vnodeTag === SUSPENSE || !isComponent2 && // <svg> and <foreignObject> must be forced into blocks so that block
+      // updates inside get proper isSVG flag at runtime. (#639, #643)
+      // This is technically web-specific, but splitting the logic out of core
+      // leads to too much unnecessary complexity.
+      (tag2 === "svg" || tag2 === "foreignObject")
     );
     if (props.length > 0) {
       const propsBuildResult = buildProps(node2, context, void 0, isComponent2, isDynamicComponent);
@@ -18984,7 +18988,12 @@ function buildProps(node2, context, props = node2.props, isComponent2, isDynamic
       if (isVOn && ssr) {
         continue;
       }
-      if (isVBind && isStaticArgOf(arg, "key") || isVOn && hasChildren && isStaticArgOf(arg, "vue:before-update")) {
+      if (
+        // #938: elements with dynamic keys should be forced into blocks
+        isVBind && isStaticArgOf(arg, "key") || // inline before-update hooks need to force block so that it is invoked
+        // before children
+        isVOn && hasChildren && isStaticArgOf(arg, "vue:before-update")
+      ) {
         shouldUseBlock = true;
       }
       if (isVBind && isStaticArgOf(arg, "ref") && context.scopes.vFor > 0) {
@@ -19086,7 +19095,9 @@ function buildProps(node2, context, props = node2.props, isComponent2, isDynamic
           if (classProp && !isStaticExp(classProp.value)) {
             classProp.value = createCallExpression(context.helper(NORMALIZE_CLASS), [classProp.value]);
           }
-          if (styleProp && (hasStyleBinding || styleProp.value.type === 4 && styleProp.value.content.trim()[0] === `[` || // v-bind:style and style both exist,
+          if (styleProp && // the static style is compiled into an object,
+          // so use `hasStyleBinding` to ensure that it is a dynamic style binding
+          (hasStyleBinding || styleProp.value.type === 4 && styleProp.value.content.trim()[0] === `[` || // v-bind:style and style both exist,
           // v-bind:style with static literal object
           styleProp.value.type === 17)) {
             styleProp.value = createCallExpression(context.helper(NORMALIZE_STYLE), [styleProp.value]);
@@ -19425,7 +19436,11 @@ var transformText = (node2, context) => {
           }
         }
       }
-      if (!hasText || children.length === 1 && (node2.type === 0 || node2.type === 1 && node2.tagType === 0 && // #3756
+      if (!hasText || // if this is a plain element with a single text child, leave it
+      // as-is since the runtime has dedicated fast path for this by directly
+      // setting textContent of the element.
+      // for component root it's always normalized anyway.
+      children.length === 1 && (node2.type === 0 || node2.type === 1 && node2.tagType === 0 && // #3756
       // custom directives can potentially add DOM elements arbitrarily,
       // we need to avoid setting textContent of the element at runtime
       // to avoid accidentally overwriting the DOM elements added
@@ -22296,7 +22311,8 @@ var transformOn$1 = (dir, node2, context) => {
         JSON.stringify(nonKeyModifiers)
       ]);
     }
-    if (keyModifiers.length && (!isStaticExp(key) || isKeyboardEvent(key.content))) {
+    if (keyModifiers.length && // if event name is dynamic, always wrap with keys guard
+    (!isStaticExp(key) || isKeyboardEvent(key.content))) {
       handlerExp = createCallExpression(context.helper(V_ON_WITH_KEYS), [
         handlerExp,
         JSON.stringify(keyModifiers)
@@ -28292,9 +28308,11 @@ var ssrInjectFallthroughAttrs = (node2, context) => {
         if (hasEncounteredIf)
           return;
         hasEncounteredIf = true;
-      } else if (// node before v-if
-      !hasEncounteredIf || // non else nodes
-      !(c.type === 1 && findDir(c, /else/, true))) {
+      } else if (
+        // node before v-if
+        !hasEncounteredIf || // non else nodes
+        !(c.type === 1 && findDir(c, /else/, true))
+      ) {
         return;
       }
     }
@@ -29765,7 +29783,8 @@ const ${DEFAULT_VAR} = ${defaultSpecifier.local.name}
       }
     }
   }
-  if (enableReactivityTransform && (refBindings || shouldTransform(scriptSetup.content)) || propsDestructureDecl) {
+  if (enableReactivityTransform && // normal <script> had ref bindings that maybe used in <script setup>
+  (refBindings || shouldTransform(scriptSetup.content)) || propsDestructureDecl) {
     const { rootRefs, importedHelpers } = transformAST(scriptSetupAst, s, startOffset, refBindings, propsDestructuredBindings);
     refBindings = refBindings ? [...refBindings, ...rootRefs] : rootRefs;
     for (const h of importedHelpers) {
@@ -30031,9 +30050,11 @@ function walkDeclaration(node2, bindings, userImportAliases) {
         const userReactiveBinding = userImportAliases["reactive"];
         if (isCallOf(init2, userReactiveBinding)) {
           bindingType = isConst ? "setup-reactive-const" : "setup-let";
-        } else if (// if a declaration is a const literal, we can mark it so that
-        // the generated render fn code doesn't need to unref() it
-        isDefineCall || isConst && canNeverBeRef(init2, userReactiveBinding)) {
+        } else if (
+          // if a declaration is a const literal, we can mark it so that
+          // the generated render fn code doesn't need to unref() it
+          isDefineCall || isConst && canNeverBeRef(init2, userReactiveBinding)
+        ) {
           bindingType = isCallOf(init2, DEFINE_PROPS) ? "setup-reactive-const" : "setup-const";
         } else if (isConst) {
           if (isCallOf(init2, userImportAliases["ref"])) {
@@ -30457,7 +30478,8 @@ function parse$4(source, { sourceMap: sourceMap2 = true, filename = DEFAULT_FILE
     // preserve all whitespaces
     isPreTag: () => true,
     getTextMode: ({ tag: tag2, props }, parent) => {
-      if (!parent && tag2 !== "template" || tag2 === "template" && props.some((p) => p.type === 6 && p.name === "lang" && p.value && p.value.content && p.value.content !== "html")) {
+      if (!parent && tag2 !== "template" || // <template lang="xxx"> should also be treated as raw text
+      tag2 === "template" && props.some((p) => p.type === 6 && p.name === "lang" && p.value && p.value.content && p.value.content !== "html")) {
         return 2;
       } else {
         return 0;
@@ -59057,6 +59079,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "break"
   (TokenType._break << 1) + 1,
   -1,
   -1,
@@ -59168,6 +59191,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "case"
   (TokenType._case << 1) + 1,
   -1,
   -1,
@@ -59251,6 +59275,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "catch"
   (TokenType._catch << 1) + 1,
   -1,
   -1,
@@ -59502,6 +59527,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "class"
   (TokenType._class << 1) + 1,
   -1,
   -1,
@@ -59613,6 +59639,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "const"
   (TokenType._const << 1) + 1,
   -1,
   -1,
@@ -59920,6 +59947,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "continue"
   (TokenType._continue << 1) + 1,
   -1,
   -1,
@@ -60143,6 +60171,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "debugger"
   (TokenType._debugger << 1) + 1,
   -1,
   -1,
@@ -60422,6 +60451,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "default"
   (TokenType._default << 1) + 1,
   -1,
   -1,
@@ -60533,6 +60563,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "delete"
   (TokenType._delete << 1) + 1,
   -1,
   -1,
@@ -60560,6 +60591,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "do"
   (TokenType._do << 1) + 1,
   -1,
   -1,
@@ -60671,6 +60703,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "else"
   (TokenType._else << 1) + 1,
   -1,
   -1,
@@ -60894,6 +60927,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "export"
   (TokenType._export << 1) + 1,
   -1,
   -1,
@@ -61061,6 +61095,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "extends"
   (TokenType._extends << 1) + 1,
   -1,
   -1,
@@ -61200,6 +61235,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "false"
   (TokenType._false << 1) + 1,
   -1,
   -1,
@@ -61367,6 +61403,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   2943,
   -1,
+  // "finally"
   (TokenType._finally << 1) + 1,
   -1,
   -1,
@@ -61422,6 +61459,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "for"
   (TokenType._for << 1) + 1,
   -1,
   -1,
@@ -61701,6 +61739,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "function"
   (TokenType._function << 1) + 1,
   -1,
   -1,
@@ -61980,6 +62019,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "if"
   (TokenType._if << 1) + 1,
   -1,
   -1,
@@ -62315,6 +62355,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "import"
   (TokenType._import << 1) + 1,
   -1,
   -1,
@@ -62342,6 +62383,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "in"
   (TokenType._in << 1) + 1,
   -1,
   -1,
@@ -62649,6 +62691,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "instanceof"
   (TokenType._instanceof << 1) + 1,
   -1,
   -1,
@@ -63096,6 +63139,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "let"
   (TokenType._let << 1) + 1,
   -1,
   -1,
@@ -63711,6 +63755,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "new"
   (TokenType._new << 1) + 1,
   -1,
   -1,
@@ -63794,6 +63839,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "null"
   (TokenType._null << 1) + 1,
   -1,
   -1,
@@ -65221,6 +65267,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "return"
   (TokenType._return << 1) + 1,
   -1,
   -1,
@@ -65556,6 +65603,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "super"
   (TokenType._super << 1) + 1,
   -1,
   -1,
@@ -65695,6 +65743,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "switch"
   (TokenType._switch << 1) + 1,
   -1,
   -1,
@@ -65806,6 +65855,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "this"
   (TokenType._this << 1) + 1,
   -1,
   -1,
@@ -65889,6 +65939,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "throw"
   (TokenType._throw << 1) + 1,
   -1,
   -1,
@@ -65972,6 +66023,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "true"
   (TokenType._true << 1) + 1,
   -1,
   -1,
@@ -65999,6 +66051,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "try"
   (TokenType._try << 1) + 1,
   -1,
   -1,
@@ -66138,6 +66191,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "typeof"
   (TokenType._typeof << 1) + 1,
   -1,
   -1,
@@ -66389,6 +66443,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "var"
   (TokenType._var << 1) + 1,
   -1,
   -1,
@@ -66472,6 +66527,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "void"
   (TokenType._void << 1) + 1,
   -1,
   -1,
@@ -66611,6 +66667,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "while"
   (TokenType._while << 1) + 1,
   -1,
   -1,
@@ -66694,6 +66751,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "with"
   (TokenType._with << 1) + 1,
   -1,
   -1,
@@ -66833,6 +66891,7 @@ var READ_WORD_TREE = new Int32Array([
   -1,
   -1,
   -1,
+  // "yield"
   (TokenType._yield << 1) + 1,
   -1,
   -1,
@@ -68831,109 +68890,121 @@ var __extends = commonjsGlobal && commonjsGlobal.__extends || function() {
 }();
 Object.defineProperty(util2, "__esModule", { value: true });
 util2.DetailContext = util2.NoopContext = util2.VError = void 0;
-var VError = function(_super) {
-  __extends(VError2, _super);
-  function VError2(path2, message) {
-    var _this = _super.call(this, message) || this;
-    _this.path = path2;
-    Object.setPrototypeOf(_this, VError2.prototype);
-    return _this;
-  }
-  return VError2;
-}(Error);
+var VError = (
+  /** @class */
+  function(_super) {
+    __extends(VError2, _super);
+    function VError2(path2, message) {
+      var _this = _super.call(this, message) || this;
+      _this.path = path2;
+      Object.setPrototypeOf(_this, VError2.prototype);
+      return _this;
+    }
+    return VError2;
+  }(Error)
+);
 util2.VError = VError;
-var NoopContext = function() {
-  function NoopContext2() {
-  }
-  NoopContext2.prototype.fail = function(relPath, message, score) {
-    return false;
-  };
-  NoopContext2.prototype.unionResolver = function() {
-    return this;
-  };
-  NoopContext2.prototype.createContext = function() {
-    return this;
-  };
-  NoopContext2.prototype.resolveUnion = function(ur) {
-  };
-  return NoopContext2;
-}();
+var NoopContext = (
+  /** @class */
+  function() {
+    function NoopContext2() {
+    }
+    NoopContext2.prototype.fail = function(relPath, message, score) {
+      return false;
+    };
+    NoopContext2.prototype.unionResolver = function() {
+      return this;
+    };
+    NoopContext2.prototype.createContext = function() {
+      return this;
+    };
+    NoopContext2.prototype.resolveUnion = function(ur) {
+    };
+    return NoopContext2;
+  }()
+);
 util2.NoopContext = NoopContext;
-var DetailContext = function() {
-  function DetailContext2() {
-    this._propNames = [""];
-    this._messages = [null];
-    this._score = 0;
-  }
-  DetailContext2.prototype.fail = function(relPath, message, score) {
-    this._propNames.push(relPath);
-    this._messages.push(message);
-    this._score += score;
-    return false;
-  };
-  DetailContext2.prototype.unionResolver = function() {
-    return new DetailUnionResolver();
-  };
-  DetailContext2.prototype.resolveUnion = function(unionResolver) {
-    var _a2, _b2;
-    var u = unionResolver;
-    var best = null;
-    for (var _i = 0, _c = u.contexts; _i < _c.length; _i++) {
-      var ctx = _c[_i];
-      if (!best || ctx._score >= best._score) {
-        best = ctx;
+var DetailContext = (
+  /** @class */
+  function() {
+    function DetailContext2() {
+      this._propNames = [""];
+      this._messages = [null];
+      this._score = 0;
+    }
+    DetailContext2.prototype.fail = function(relPath, message, score) {
+      this._propNames.push(relPath);
+      this._messages.push(message);
+      this._score += score;
+      return false;
+    };
+    DetailContext2.prototype.unionResolver = function() {
+      return new DetailUnionResolver();
+    };
+    DetailContext2.prototype.resolveUnion = function(unionResolver) {
+      var _a2, _b2;
+      var u = unionResolver;
+      var best = null;
+      for (var _i = 0, _c = u.contexts; _i < _c.length; _i++) {
+        var ctx = _c[_i];
+        if (!best || ctx._score >= best._score) {
+          best = ctx;
+        }
       }
-    }
-    if (best && best._score > 0) {
-      (_a2 = this._propNames).push.apply(_a2, best._propNames);
-      (_b2 = this._messages).push.apply(_b2, best._messages);
-    }
-  };
-  DetailContext2.prototype.getError = function(path2) {
-    var msgParts = [];
-    for (var i = this._propNames.length - 1; i >= 0; i--) {
-      var p = this._propNames[i];
-      path2 += typeof p === "number" ? "[" + p + "]" : p ? "." + p : "";
-      var m = this._messages[i];
-      if (m) {
-        msgParts.push(path2 + " " + m);
+      if (best && best._score > 0) {
+        (_a2 = this._propNames).push.apply(_a2, best._propNames);
+        (_b2 = this._messages).push.apply(_b2, best._messages);
       }
-    }
-    return new VError(path2, msgParts.join("; "));
-  };
-  DetailContext2.prototype.getErrorDetail = function(path2) {
-    var details = [];
-    for (var i = this._propNames.length - 1; i >= 0; i--) {
-      var p = this._propNames[i];
-      path2 += typeof p === "number" ? "[" + p + "]" : p ? "." + p : "";
-      var message = this._messages[i];
-      if (message) {
-        details.push({ path: path2, message });
+    };
+    DetailContext2.prototype.getError = function(path2) {
+      var msgParts = [];
+      for (var i = this._propNames.length - 1; i >= 0; i--) {
+        var p = this._propNames[i];
+        path2 += typeof p === "number" ? "[" + p + "]" : p ? "." + p : "";
+        var m = this._messages[i];
+        if (m) {
+          msgParts.push(path2 + " " + m);
+        }
       }
-    }
-    var detail = null;
-    for (var i = details.length - 1; i >= 0; i--) {
-      if (detail) {
-        details[i].nested = [detail];
+      return new VError(path2, msgParts.join("; "));
+    };
+    DetailContext2.prototype.getErrorDetail = function(path2) {
+      var details = [];
+      for (var i = this._propNames.length - 1; i >= 0; i--) {
+        var p = this._propNames[i];
+        path2 += typeof p === "number" ? "[" + p + "]" : p ? "." + p : "";
+        var message = this._messages[i];
+        if (message) {
+          details.push({ path: path2, message });
+        }
       }
-      detail = details[i];
-    }
-    return detail;
-  };
-  return DetailContext2;
-}();
+      var detail = null;
+      for (var i = details.length - 1; i >= 0; i--) {
+        if (detail) {
+          details[i].nested = [detail];
+        }
+        detail = details[i];
+      }
+      return detail;
+    };
+    return DetailContext2;
+  }()
+);
 util2.DetailContext = DetailContext;
-var DetailUnionResolver = function() {
-  function DetailUnionResolver2() {
-    this.contexts = [];
-  }
-  DetailUnionResolver2.prototype.createContext = function() {
-    var ctx = new DetailContext();
-    this.contexts.push(ctx);
-    return ctx;
-  };
-  return DetailUnionResolver2;
-}();
+var DetailUnionResolver = (
+  /** @class */
+  function() {
+    function DetailUnionResolver2() {
+      this.contexts = [];
+    }
+    DetailUnionResolver2.prototype.createContext = function() {
+      var ctx = new DetailContext();
+      this.contexts.push(ctx);
+      return ctx;
+    };
+    return DetailUnionResolver2;
+  }()
+);
 (function(exports) {
   var __extends2 = commonjsGlobal && commonjsGlobal.__extends || function() {
     var extendStatics = function(d, b) {
@@ -68957,11 +69028,14 @@ var DetailUnionResolver = function() {
   Object.defineProperty(exports, "__esModule", { value: true });
   exports.basicTypes = exports.BasicType = exports.TParamList = exports.TParam = exports.param = exports.TFunc = exports.func = exports.TProp = exports.TOptional = exports.opt = exports.TIface = exports.iface = exports.TEnumLiteral = exports.enumlit = exports.TEnumType = exports.enumtype = exports.TIntersection = exports.intersection = exports.TUnion = exports.union = exports.TTuple = exports.tuple = exports.TArray = exports.array = exports.TLiteral = exports.lit = exports.TName = exports.name = exports.TType = void 0;
   var util_1 = util2;
-  var TType = function() {
-    function TType2() {
-    }
-    return TType2;
-  }();
+  var TType = (
+    /** @class */
+    function() {
+      function TType2() {
+      }
+      return TType2;
+    }()
+  );
   exports.TType = TType;
   function parseSpec(typeSpec) {
     return typeof typeSpec === "string" ? name(typeSpec) : typeSpec;
@@ -68977,78 +69051,87 @@ var DetailUnionResolver = function() {
     return new TName(value);
   }
   exports.name = name;
-  var TName = function(_super) {
-    __extends2(TName2, _super);
-    function TName2(name2) {
-      var _this = _super.call(this) || this;
-      _this.name = name2;
-      _this._failMsg = "is not a " + name2;
-      return _this;
-    }
-    TName2.prototype.getChecker = function(suite, strict, allowedProps) {
-      var _this = this;
-      var ttype = getNamedType(suite, this.name);
-      var checker = ttype.getChecker(suite, strict, allowedProps);
-      if (ttype instanceof BasicType || ttype instanceof TName2) {
-        return checker;
+  var TName = (
+    /** @class */
+    function(_super) {
+      __extends2(TName2, _super);
+      function TName2(name2) {
+        var _this = _super.call(this) || this;
+        _this.name = name2;
+        _this._failMsg = "is not a " + name2;
+        return _this;
       }
-      return function(value, ctx) {
-        return checker(value, ctx) ? true : ctx.fail(null, _this._failMsg, 0);
+      TName2.prototype.getChecker = function(suite, strict, allowedProps) {
+        var _this = this;
+        var ttype = getNamedType(suite, this.name);
+        var checker = ttype.getChecker(suite, strict, allowedProps);
+        if (ttype instanceof BasicType || ttype instanceof TName2) {
+          return checker;
+        }
+        return function(value, ctx) {
+          return checker(value, ctx) ? true : ctx.fail(null, _this._failMsg, 0);
+        };
       };
-    };
-    return TName2;
-  }(TType);
+      return TName2;
+    }(TType)
+  );
   exports.TName = TName;
   function lit(value) {
     return new TLiteral(value);
   }
   exports.lit = lit;
-  var TLiteral = function(_super) {
-    __extends2(TLiteral2, _super);
-    function TLiteral2(value) {
-      var _this = _super.call(this) || this;
-      _this.value = value;
-      _this.name = JSON.stringify(value);
-      _this._failMsg = "is not " + _this.name;
-      return _this;
-    }
-    TLiteral2.prototype.getChecker = function(suite, strict) {
-      var _this = this;
-      return function(value, ctx) {
-        return value === _this.value ? true : ctx.fail(null, _this._failMsg, -1);
+  var TLiteral = (
+    /** @class */
+    function(_super) {
+      __extends2(TLiteral2, _super);
+      function TLiteral2(value) {
+        var _this = _super.call(this) || this;
+        _this.value = value;
+        _this.name = JSON.stringify(value);
+        _this._failMsg = "is not " + _this.name;
+        return _this;
+      }
+      TLiteral2.prototype.getChecker = function(suite, strict) {
+        var _this = this;
+        return function(value, ctx) {
+          return value === _this.value ? true : ctx.fail(null, _this._failMsg, -1);
+        };
       };
-    };
-    return TLiteral2;
-  }(TType);
+      return TLiteral2;
+    }(TType)
+  );
   exports.TLiteral = TLiteral;
   function array(typeSpec) {
     return new TArray(parseSpec(typeSpec));
   }
   exports.array = array;
-  var TArray = function(_super) {
-    __extends2(TArray2, _super);
-    function TArray2(ttype) {
-      var _this = _super.call(this) || this;
-      _this.ttype = ttype;
-      return _this;
-    }
-    TArray2.prototype.getChecker = function(suite, strict) {
-      var itemChecker = this.ttype.getChecker(suite, strict);
-      return function(value, ctx) {
-        if (!Array.isArray(value)) {
-          return ctx.fail(null, "is not an array", 0);
-        }
-        for (var i = 0; i < value.length; i++) {
-          var ok = itemChecker(value[i], ctx);
-          if (!ok) {
-            return ctx.fail(i, null, 1);
+  var TArray = (
+    /** @class */
+    function(_super) {
+      __extends2(TArray2, _super);
+      function TArray2(ttype) {
+        var _this = _super.call(this) || this;
+        _this.ttype = ttype;
+        return _this;
+      }
+      TArray2.prototype.getChecker = function(suite, strict) {
+        var itemChecker = this.ttype.getChecker(suite, strict);
+        return function(value, ctx) {
+          if (!Array.isArray(value)) {
+            return ctx.fail(null, "is not an array", 0);
           }
-        }
-        return true;
+          for (var i = 0; i < value.length; i++) {
+            var ok = itemChecker(value[i], ctx);
+            if (!ok) {
+              return ctx.fail(i, null, 1);
+            }
+          }
+          return true;
+        };
       };
-    };
-    return TArray2;
-  }(TType);
+      return TArray2;
+    }(TType)
+  );
   exports.TArray = TArray;
   function tuple() {
     var typeSpec = [];
@@ -69060,41 +69143,44 @@ var DetailUnionResolver = function() {
     }));
   }
   exports.tuple = tuple;
-  var TTuple = function(_super) {
-    __extends2(TTuple2, _super);
-    function TTuple2(ttypes) {
-      var _this = _super.call(this) || this;
-      _this.ttypes = ttypes;
-      return _this;
-    }
-    TTuple2.prototype.getChecker = function(suite, strict) {
-      var itemCheckers = this.ttypes.map(function(t) {
-        return t.getChecker(suite, strict);
-      });
-      var checker = function(value, ctx) {
-        if (!Array.isArray(value)) {
-          return ctx.fail(null, "is not an array", 0);
-        }
-        for (var i = 0; i < itemCheckers.length; i++) {
-          var ok = itemCheckers[i](value[i], ctx);
-          if (!ok) {
-            return ctx.fail(i, null, 1);
-          }
-        }
-        return true;
-      };
-      if (!strict) {
-        return checker;
+  var TTuple = (
+    /** @class */
+    function(_super) {
+      __extends2(TTuple2, _super);
+      function TTuple2(ttypes) {
+        var _this = _super.call(this) || this;
+        _this.ttypes = ttypes;
+        return _this;
       }
-      return function(value, ctx) {
-        if (!checker(value, ctx)) {
-          return false;
+      TTuple2.prototype.getChecker = function(suite, strict) {
+        var itemCheckers = this.ttypes.map(function(t) {
+          return t.getChecker(suite, strict);
+        });
+        var checker = function(value, ctx) {
+          if (!Array.isArray(value)) {
+            return ctx.fail(null, "is not an array", 0);
+          }
+          for (var i = 0; i < itemCheckers.length; i++) {
+            var ok = itemCheckers[i](value[i], ctx);
+            if (!ok) {
+              return ctx.fail(i, null, 1);
+            }
+          }
+          return true;
+        };
+        if (!strict) {
+          return checker;
         }
-        return value.length <= itemCheckers.length ? true : ctx.fail(itemCheckers.length, "is extraneous", 2);
+        return function(value, ctx) {
+          if (!checker(value, ctx)) {
+            return false;
+          }
+          return value.length <= itemCheckers.length ? true : ctx.fail(itemCheckers.length, "is extraneous", 2);
+        };
       };
-    };
-    return TTuple2;
-  }(TType);
+      return TTuple2;
+    }(TType)
+  );
   exports.TTuple = TTuple;
   function union() {
     var typeSpec = [];
@@ -69106,46 +69192,49 @@ var DetailUnionResolver = function() {
     }));
   }
   exports.union = union;
-  var TUnion = function(_super) {
-    __extends2(TUnion2, _super);
-    function TUnion2(ttypes) {
-      var _this = _super.call(this) || this;
-      _this.ttypes = ttypes;
-      var names = ttypes.map(function(t) {
-        return t instanceof TName || t instanceof TLiteral ? t.name : null;
-      }).filter(function(n2) {
-        return n2;
-      });
-      var otherTypes = ttypes.length - names.length;
-      if (names.length) {
-        if (otherTypes > 0) {
-          names.push(otherTypes + " more");
-        }
-        _this._failMsg = "is none of " + names.join(", ");
-      } else {
-        _this._failMsg = "is none of " + otherTypes + " types";
-      }
-      return _this;
-    }
-    TUnion2.prototype.getChecker = function(suite, strict) {
-      var _this = this;
-      var itemCheckers = this.ttypes.map(function(t) {
-        return t.getChecker(suite, strict);
-      });
-      return function(value, ctx) {
-        var ur = ctx.unionResolver();
-        for (var i = 0; i < itemCheckers.length; i++) {
-          var ok = itemCheckers[i](value, ur.createContext());
-          if (ok) {
-            return true;
+  var TUnion = (
+    /** @class */
+    function(_super) {
+      __extends2(TUnion2, _super);
+      function TUnion2(ttypes) {
+        var _this = _super.call(this) || this;
+        _this.ttypes = ttypes;
+        var names = ttypes.map(function(t) {
+          return t instanceof TName || t instanceof TLiteral ? t.name : null;
+        }).filter(function(n2) {
+          return n2;
+        });
+        var otherTypes = ttypes.length - names.length;
+        if (names.length) {
+          if (otherTypes > 0) {
+            names.push(otherTypes + " more");
           }
+          _this._failMsg = "is none of " + names.join(", ");
+        } else {
+          _this._failMsg = "is none of " + otherTypes + " types";
         }
-        ctx.resolveUnion(ur);
-        return ctx.fail(null, _this._failMsg, 0);
+        return _this;
+      }
+      TUnion2.prototype.getChecker = function(suite, strict) {
+        var _this = this;
+        var itemCheckers = this.ttypes.map(function(t) {
+          return t.getChecker(suite, strict);
+        });
+        return function(value, ctx) {
+          var ur = ctx.unionResolver();
+          for (var i = 0; i < itemCheckers.length; i++) {
+            var ok = itemCheckers[i](value, ur.createContext());
+            if (ok) {
+              return true;
+            }
+          }
+          ctx.resolveUnion(ur);
+          return ctx.fail(null, _this._failMsg, 0);
+        };
       };
-    };
-    return TUnion2;
-  }(TType);
+      return TUnion2;
+    }(TType)
+  );
   exports.TUnion = TUnion;
   function intersection() {
     var typeSpec = [];
@@ -69157,85 +69246,94 @@ var DetailUnionResolver = function() {
     }));
   }
   exports.intersection = intersection;
-  var TIntersection = function(_super) {
-    __extends2(TIntersection2, _super);
-    function TIntersection2(ttypes) {
-      var _this = _super.call(this) || this;
-      _this.ttypes = ttypes;
-      return _this;
-    }
-    TIntersection2.prototype.getChecker = function(suite, strict) {
-      var allowedProps = /* @__PURE__ */ new Set();
-      var itemCheckers = this.ttypes.map(function(t) {
-        return t.getChecker(suite, strict, allowedProps);
-      });
-      return function(value, ctx) {
-        var ok = itemCheckers.every(function(checker) {
-          return checker(value, ctx);
+  var TIntersection = (
+    /** @class */
+    function(_super) {
+      __extends2(TIntersection2, _super);
+      function TIntersection2(ttypes) {
+        var _this = _super.call(this) || this;
+        _this.ttypes = ttypes;
+        return _this;
+      }
+      TIntersection2.prototype.getChecker = function(suite, strict) {
+        var allowedProps = /* @__PURE__ */ new Set();
+        var itemCheckers = this.ttypes.map(function(t) {
+          return t.getChecker(suite, strict, allowedProps);
         });
-        if (ok) {
-          return true;
-        }
-        return ctx.fail(null, null, 0);
+        return function(value, ctx) {
+          var ok = itemCheckers.every(function(checker) {
+            return checker(value, ctx);
+          });
+          if (ok) {
+            return true;
+          }
+          return ctx.fail(null, null, 0);
+        };
       };
-    };
-    return TIntersection2;
-  }(TType);
+      return TIntersection2;
+    }(TType)
+  );
   exports.TIntersection = TIntersection;
   function enumtype(values) {
     return new TEnumType(values);
   }
   exports.enumtype = enumtype;
-  var TEnumType = function(_super) {
-    __extends2(TEnumType2, _super);
-    function TEnumType2(members) {
-      var _this = _super.call(this) || this;
-      _this.members = members;
-      _this.validValues = /* @__PURE__ */ new Set();
-      _this._failMsg = "is not a valid enum value";
-      _this.validValues = new Set(Object.keys(members).map(function(name2) {
-        return members[name2];
-      }));
-      return _this;
-    }
-    TEnumType2.prototype.getChecker = function(suite, strict) {
-      var _this = this;
-      return function(value, ctx) {
-        return _this.validValues.has(value) ? true : ctx.fail(null, _this._failMsg, 0);
+  var TEnumType = (
+    /** @class */
+    function(_super) {
+      __extends2(TEnumType2, _super);
+      function TEnumType2(members) {
+        var _this = _super.call(this) || this;
+        _this.members = members;
+        _this.validValues = /* @__PURE__ */ new Set();
+        _this._failMsg = "is not a valid enum value";
+        _this.validValues = new Set(Object.keys(members).map(function(name2) {
+          return members[name2];
+        }));
+        return _this;
+      }
+      TEnumType2.prototype.getChecker = function(suite, strict) {
+        var _this = this;
+        return function(value, ctx) {
+          return _this.validValues.has(value) ? true : ctx.fail(null, _this._failMsg, 0);
+        };
       };
-    };
-    return TEnumType2;
-  }(TType);
+      return TEnumType2;
+    }(TType)
+  );
   exports.TEnumType = TEnumType;
   function enumlit(name2, prop) {
     return new TEnumLiteral(name2, prop);
   }
   exports.enumlit = enumlit;
-  var TEnumLiteral = function(_super) {
-    __extends2(TEnumLiteral2, _super);
-    function TEnumLiteral2(enumName, prop) {
-      var _this = _super.call(this) || this;
-      _this.enumName = enumName;
-      _this.prop = prop;
-      _this._failMsg = "is not " + enumName + "." + prop;
-      return _this;
-    }
-    TEnumLiteral2.prototype.getChecker = function(suite, strict) {
-      var _this = this;
-      var ttype = getNamedType(suite, this.enumName);
-      if (!(ttype instanceof TEnumType)) {
-        throw new Error("Type " + this.enumName + " used in enumlit is not an enum type");
+  var TEnumLiteral = (
+    /** @class */
+    function(_super) {
+      __extends2(TEnumLiteral2, _super);
+      function TEnumLiteral2(enumName, prop) {
+        var _this = _super.call(this) || this;
+        _this.enumName = enumName;
+        _this.prop = prop;
+        _this._failMsg = "is not " + enumName + "." + prop;
+        return _this;
       }
-      var val = ttype.members[this.prop];
-      if (!ttype.members.hasOwnProperty(this.prop)) {
-        throw new Error("Unknown value " + this.enumName + "." + this.prop + " used in enumlit");
-      }
-      return function(value, ctx) {
-        return value === val ? true : ctx.fail(null, _this._failMsg, -1);
+      TEnumLiteral2.prototype.getChecker = function(suite, strict) {
+        var _this = this;
+        var ttype = getNamedType(suite, this.enumName);
+        if (!(ttype instanceof TEnumType)) {
+          throw new Error("Type " + this.enumName + " used in enumlit is not an enum type");
+        }
+        var val = ttype.members[this.prop];
+        if (!ttype.members.hasOwnProperty(this.prop)) {
+          throw new Error("Unknown value " + this.enumName + "." + this.prop + " used in enumlit");
+        }
+        return function(value, ctx) {
+          return value === val ? true : ctx.fail(null, _this._failMsg, -1);
+        };
       };
-    };
-    return TEnumLiteral2;
-  }(TType);
+      return TEnumLiteral2;
+    }(TType)
+  );
   exports.TEnumLiteral = TEnumLiteral;
   function makeIfaceProps(props) {
     return Object.keys(props).map(function(name2) {
@@ -69249,107 +69347,116 @@ var DetailUnionResolver = function() {
     return new TIface(bases, makeIfaceProps(props));
   }
   exports.iface = iface;
-  var TIface = function(_super) {
-    __extends2(TIface2, _super);
-    function TIface2(bases, props) {
-      var _this = _super.call(this) || this;
-      _this.bases = bases;
-      _this.props = props;
-      _this.propSet = new Set(props.map(function(p) {
-        return p.name;
-      }));
-      return _this;
-    }
-    TIface2.prototype.getChecker = function(suite, strict, allowedProps) {
-      var _this = this;
-      var baseCheckers = this.bases.map(function(b) {
-        return getNamedType(suite, b).getChecker(suite, strict);
-      });
-      var propCheckers = this.props.map(function(prop) {
-        return prop.ttype.getChecker(suite, strict);
-      });
-      var testCtx = new util_1.NoopContext();
-      var isPropRequired = this.props.map(function(prop, i) {
-        return !prop.isOpt && !propCheckers[i](void 0, testCtx);
-      });
-      var checker = function(value, ctx) {
-        if (typeof value !== "object" || value === null) {
-          return ctx.fail(null, "is not an object", 0);
+  var TIface = (
+    /** @class */
+    function(_super) {
+      __extends2(TIface2, _super);
+      function TIface2(bases, props) {
+        var _this = _super.call(this) || this;
+        _this.bases = bases;
+        _this.props = props;
+        _this.propSet = new Set(props.map(function(p) {
+          return p.name;
+        }));
+        return _this;
+      }
+      TIface2.prototype.getChecker = function(suite, strict, allowedProps) {
+        var _this = this;
+        var baseCheckers = this.bases.map(function(b) {
+          return getNamedType(suite, b).getChecker(suite, strict);
+        });
+        var propCheckers = this.props.map(function(prop) {
+          return prop.ttype.getChecker(suite, strict);
+        });
+        var testCtx = new util_1.NoopContext();
+        var isPropRequired = this.props.map(function(prop, i) {
+          return !prop.isOpt && !propCheckers[i](void 0, testCtx);
+        });
+        var checker = function(value, ctx) {
+          if (typeof value !== "object" || value === null) {
+            return ctx.fail(null, "is not an object", 0);
+          }
+          for (var i = 0; i < baseCheckers.length; i++) {
+            if (!baseCheckers[i](value, ctx)) {
+              return false;
+            }
+          }
+          for (var i = 0; i < propCheckers.length; i++) {
+            var name_1 = _this.props[i].name;
+            var v = value[name_1];
+            if (v === void 0) {
+              if (isPropRequired[i]) {
+                return ctx.fail(name_1, "is missing", 1);
+              }
+            } else {
+              var ok = propCheckers[i](v, ctx);
+              if (!ok) {
+                return ctx.fail(name_1, null, 1);
+              }
+            }
+          }
+          return true;
+        };
+        if (!strict) {
+          return checker;
         }
-        for (var i = 0; i < baseCheckers.length; i++) {
-          if (!baseCheckers[i](value, ctx)) {
+        var propSet = this.propSet;
+        if (allowedProps) {
+          this.propSet.forEach(function(prop) {
+            return allowedProps.add(prop);
+          });
+          propSet = allowedProps;
+        }
+        return function(value, ctx) {
+          if (!checker(value, ctx)) {
             return false;
           }
-        }
-        for (var i = 0; i < propCheckers.length; i++) {
-          var name_1 = _this.props[i].name;
-          var v = value[name_1];
-          if (v === void 0) {
-            if (isPropRequired[i]) {
-              return ctx.fail(name_1, "is missing", 1);
-            }
-          } else {
-            var ok = propCheckers[i](v, ctx);
-            if (!ok) {
-              return ctx.fail(name_1, null, 1);
+          for (var prop in value) {
+            if (!propSet.has(prop)) {
+              return ctx.fail(prop, "is extraneous", 2);
             }
           }
-        }
-        return true;
+          return true;
+        };
       };
-      if (!strict) {
-        return checker;
-      }
-      var propSet = this.propSet;
-      if (allowedProps) {
-        this.propSet.forEach(function(prop) {
-          return allowedProps.add(prop);
-        });
-        propSet = allowedProps;
-      }
-      return function(value, ctx) {
-        if (!checker(value, ctx)) {
-          return false;
-        }
-        for (var prop in value) {
-          if (!propSet.has(prop)) {
-            return ctx.fail(prop, "is extraneous", 2);
-          }
-        }
-        return true;
-      };
-    };
-    return TIface2;
-  }(TType);
+      return TIface2;
+    }(TType)
+  );
   exports.TIface = TIface;
   function opt(typeSpec) {
     return new TOptional(parseSpec(typeSpec));
   }
   exports.opt = opt;
-  var TOptional = function(_super) {
-    __extends2(TOptional2, _super);
-    function TOptional2(ttype) {
-      var _this = _super.call(this) || this;
-      _this.ttype = ttype;
-      return _this;
-    }
-    TOptional2.prototype.getChecker = function(suite, strict) {
-      var itemChecker = this.ttype.getChecker(suite, strict);
-      return function(value, ctx) {
-        return value === void 0 || itemChecker(value, ctx);
+  var TOptional = (
+    /** @class */
+    function(_super) {
+      __extends2(TOptional2, _super);
+      function TOptional2(ttype) {
+        var _this = _super.call(this) || this;
+        _this.ttype = ttype;
+        return _this;
+      }
+      TOptional2.prototype.getChecker = function(suite, strict) {
+        var itemChecker = this.ttype.getChecker(suite, strict);
+        return function(value, ctx) {
+          return value === void 0 || itemChecker(value, ctx);
+        };
       };
-    };
-    return TOptional2;
-  }(TType);
+      return TOptional2;
+    }(TType)
+  );
   exports.TOptional = TOptional;
-  var TProp = function() {
-    function TProp2(name2, ttype, isOpt) {
-      this.name = name2;
-      this.ttype = ttype;
-      this.isOpt = isOpt;
-    }
-    return TProp2;
-  }();
+  var TProp = (
+    /** @class */
+    function() {
+      function TProp2(name2, ttype, isOpt) {
+        this.name = name2;
+        this.ttype = ttype;
+        this.isOpt = isOpt;
+      }
+      return TProp2;
+    }()
+  );
   exports.TProp = TProp;
   function func(resultSpec) {
     var params = [];
@@ -69359,99 +69466,111 @@ var DetailUnionResolver = function() {
     return new TFunc(new TParamList(params), parseSpec(resultSpec));
   }
   exports.func = func;
-  var TFunc = function(_super) {
-    __extends2(TFunc2, _super);
-    function TFunc2(paramList, result2) {
-      var _this = _super.call(this) || this;
-      _this.paramList = paramList;
-      _this.result = result2;
-      return _this;
-    }
-    TFunc2.prototype.getChecker = function(suite, strict) {
-      return function(value, ctx) {
-        return typeof value === "function" ? true : ctx.fail(null, "is not a function", 0);
+  var TFunc = (
+    /** @class */
+    function(_super) {
+      __extends2(TFunc2, _super);
+      function TFunc2(paramList, result2) {
+        var _this = _super.call(this) || this;
+        _this.paramList = paramList;
+        _this.result = result2;
+        return _this;
+      }
+      TFunc2.prototype.getChecker = function(suite, strict) {
+        return function(value, ctx) {
+          return typeof value === "function" ? true : ctx.fail(null, "is not a function", 0);
+        };
       };
-    };
-    return TFunc2;
-  }(TType);
+      return TFunc2;
+    }(TType)
+  );
   exports.TFunc = TFunc;
   function param(name2, typeSpec, isOpt) {
     return new TParam(name2, parseSpec(typeSpec), Boolean(isOpt));
   }
   exports.param = param;
-  var TParam = function() {
-    function TParam2(name2, ttype, isOpt) {
-      this.name = name2;
-      this.ttype = ttype;
-      this.isOpt = isOpt;
-    }
-    return TParam2;
-  }();
+  var TParam = (
+    /** @class */
+    function() {
+      function TParam2(name2, ttype, isOpt) {
+        this.name = name2;
+        this.ttype = ttype;
+        this.isOpt = isOpt;
+      }
+      return TParam2;
+    }()
+  );
   exports.TParam = TParam;
-  var TParamList = function(_super) {
-    __extends2(TParamList2, _super);
-    function TParamList2(params) {
-      var _this = _super.call(this) || this;
-      _this.params = params;
-      return _this;
-    }
-    TParamList2.prototype.getChecker = function(suite, strict) {
-      var _this = this;
-      var itemCheckers = this.params.map(function(t) {
-        return t.ttype.getChecker(suite, strict);
-      });
-      var testCtx = new util_1.NoopContext();
-      var isParamRequired = this.params.map(function(param2, i) {
-        return !param2.isOpt && !itemCheckers[i](void 0, testCtx);
-      });
-      var checker = function(value, ctx) {
-        if (!Array.isArray(value)) {
-          return ctx.fail(null, "is not an array", 0);
-        }
-        for (var i = 0; i < itemCheckers.length; i++) {
-          var p = _this.params[i];
-          if (value[i] === void 0) {
-            if (isParamRequired[i]) {
-              return ctx.fail(p.name, "is missing", 1);
-            }
-          } else {
-            var ok = itemCheckers[i](value[i], ctx);
-            if (!ok) {
-              return ctx.fail(p.name, null, 1);
+  var TParamList = (
+    /** @class */
+    function(_super) {
+      __extends2(TParamList2, _super);
+      function TParamList2(params) {
+        var _this = _super.call(this) || this;
+        _this.params = params;
+        return _this;
+      }
+      TParamList2.prototype.getChecker = function(suite, strict) {
+        var _this = this;
+        var itemCheckers = this.params.map(function(t) {
+          return t.ttype.getChecker(suite, strict);
+        });
+        var testCtx = new util_1.NoopContext();
+        var isParamRequired = this.params.map(function(param2, i) {
+          return !param2.isOpt && !itemCheckers[i](void 0, testCtx);
+        });
+        var checker = function(value, ctx) {
+          if (!Array.isArray(value)) {
+            return ctx.fail(null, "is not an array", 0);
+          }
+          for (var i = 0; i < itemCheckers.length; i++) {
+            var p = _this.params[i];
+            if (value[i] === void 0) {
+              if (isParamRequired[i]) {
+                return ctx.fail(p.name, "is missing", 1);
+              }
+            } else {
+              var ok = itemCheckers[i](value[i], ctx);
+              if (!ok) {
+                return ctx.fail(p.name, null, 1);
+              }
             }
           }
+          return true;
+        };
+        if (!strict) {
+          return checker;
         }
-        return true;
+        return function(value, ctx) {
+          if (!checker(value, ctx)) {
+            return false;
+          }
+          return value.length <= itemCheckers.length ? true : ctx.fail(itemCheckers.length, "is extraneous", 2);
+        };
       };
-      if (!strict) {
-        return checker;
-      }
-      return function(value, ctx) {
-        if (!checker(value, ctx)) {
-          return false;
-        }
-        return value.length <= itemCheckers.length ? true : ctx.fail(itemCheckers.length, "is extraneous", 2);
-      };
-    };
-    return TParamList2;
-  }(TType);
+      return TParamList2;
+    }(TType)
+  );
   exports.TParamList = TParamList;
-  var BasicType = function(_super) {
-    __extends2(BasicType2, _super);
-    function BasicType2(validator, message) {
-      var _this = _super.call(this) || this;
-      _this.validator = validator;
-      _this.message = message;
-      return _this;
-    }
-    BasicType2.prototype.getChecker = function(suite, strict) {
-      var _this = this;
-      return function(value, ctx) {
-        return _this.validator(value) ? true : ctx.fail(null, _this.message, 0);
+  var BasicType = (
+    /** @class */
+    function(_super) {
+      __extends2(BasicType2, _super);
+      function BasicType2(validator, message) {
+        var _this = _super.call(this) || this;
+        _this.validator = validator;
+        _this.message = message;
+        return _this;
+      }
+      BasicType2.prototype.getChecker = function(suite, strict) {
+        var _this = this;
+        return function(value, ctx) {
+          return _this.validator(value) ? true : ctx.fail(null, _this.message, 0);
+        };
       };
-    };
-    return BasicType2;
-  }(TType);
+      return BasicType2;
+    }(TType)
+  );
   exports.BasicType = BasicType;
   exports.basicTypes = {
     any: new BasicType(function(v) {
@@ -69638,104 +69757,107 @@ var DetailUnionResolver = function() {
     return checkers;
   }
   exports.createCheckers = createCheckers;
-  var Checker = function() {
-    function Checker2(suite, ttype, _path2) {
-      if (_path2 === void 0) {
-        _path2 = "value";
-      }
-      this.suite = suite;
-      this.ttype = ttype;
-      this._path = _path2;
-      this.props = /* @__PURE__ */ new Map();
-      if (ttype instanceof types_1.TIface) {
-        for (var _i = 0, _a2 = ttype.props; _i < _a2.length; _i++) {
-          var p = _a2[_i];
-          this.props.set(p.name, p.ttype);
+  var Checker = (
+    /** @class */
+    function() {
+      function Checker2(suite, ttype, _path2) {
+        if (_path2 === void 0) {
+          _path2 = "value";
         }
+        this.suite = suite;
+        this.ttype = ttype;
+        this._path = _path2;
+        this.props = /* @__PURE__ */ new Map();
+        if (ttype instanceof types_1.TIface) {
+          for (var _i = 0, _a2 = ttype.props; _i < _a2.length; _i++) {
+            var p = _a2[_i];
+            this.props.set(p.name, p.ttype);
+          }
+        }
+        this.checkerPlain = this.ttype.getChecker(suite, false);
+        this.checkerStrict = this.ttype.getChecker(suite, true);
       }
-      this.checkerPlain = this.ttype.getChecker(suite, false);
-      this.checkerStrict = this.ttype.getChecker(suite, true);
-    }
-    Checker2.prototype.setReportedPath = function(path2) {
-      this._path = path2;
-    };
-    Checker2.prototype.check = function(value) {
-      return this._doCheck(this.checkerPlain, value);
-    };
-    Checker2.prototype.test = function(value) {
-      return this.checkerPlain(value, new util_1.NoopContext());
-    };
-    Checker2.prototype.validate = function(value) {
-      return this._doValidate(this.checkerPlain, value);
-    };
-    Checker2.prototype.strictCheck = function(value) {
-      return this._doCheck(this.checkerStrict, value);
-    };
-    Checker2.prototype.strictTest = function(value) {
-      return this.checkerStrict(value, new util_1.NoopContext());
-    };
-    Checker2.prototype.strictValidate = function(value) {
-      return this._doValidate(this.checkerStrict, value);
-    };
-    Checker2.prototype.getProp = function(prop) {
-      var ttype = this.props.get(prop);
-      if (!ttype) {
-        throw new Error("Type has no property " + prop);
-      }
-      return new Checker2(this.suite, ttype, this._path + "." + prop);
-    };
-    Checker2.prototype.methodArgs = function(methodName) {
-      var tfunc = this._getMethod(methodName);
-      return new Checker2(this.suite, tfunc.paramList);
-    };
-    Checker2.prototype.methodResult = function(methodName) {
-      var tfunc = this._getMethod(methodName);
-      return new Checker2(this.suite, tfunc.result);
-    };
-    Checker2.prototype.getArgs = function() {
-      if (!(this.ttype instanceof types_1.TFunc)) {
-        throw new Error("getArgs() applied to non-function");
-      }
-      return new Checker2(this.suite, this.ttype.paramList);
-    };
-    Checker2.prototype.getResult = function() {
-      if (!(this.ttype instanceof types_1.TFunc)) {
-        throw new Error("getResult() applied to non-function");
-      }
-      return new Checker2(this.suite, this.ttype.result);
-    };
-    Checker2.prototype.getType = function() {
-      return this.ttype;
-    };
-    Checker2.prototype._doCheck = function(checkerFunc, value) {
-      var noopCtx = new util_1.NoopContext();
-      if (!checkerFunc(value, noopCtx)) {
+      Checker2.prototype.setReportedPath = function(path2) {
+        this._path = path2;
+      };
+      Checker2.prototype.check = function(value) {
+        return this._doCheck(this.checkerPlain, value);
+      };
+      Checker2.prototype.test = function(value) {
+        return this.checkerPlain(value, new util_1.NoopContext());
+      };
+      Checker2.prototype.validate = function(value) {
+        return this._doValidate(this.checkerPlain, value);
+      };
+      Checker2.prototype.strictCheck = function(value) {
+        return this._doCheck(this.checkerStrict, value);
+      };
+      Checker2.prototype.strictTest = function(value) {
+        return this.checkerStrict(value, new util_1.NoopContext());
+      };
+      Checker2.prototype.strictValidate = function(value) {
+        return this._doValidate(this.checkerStrict, value);
+      };
+      Checker2.prototype.getProp = function(prop) {
+        var ttype = this.props.get(prop);
+        if (!ttype) {
+          throw new Error("Type has no property " + prop);
+        }
+        return new Checker2(this.suite, ttype, this._path + "." + prop);
+      };
+      Checker2.prototype.methodArgs = function(methodName) {
+        var tfunc = this._getMethod(methodName);
+        return new Checker2(this.suite, tfunc.paramList);
+      };
+      Checker2.prototype.methodResult = function(methodName) {
+        var tfunc = this._getMethod(methodName);
+        return new Checker2(this.suite, tfunc.result);
+      };
+      Checker2.prototype.getArgs = function() {
+        if (!(this.ttype instanceof types_1.TFunc)) {
+          throw new Error("getArgs() applied to non-function");
+        }
+        return new Checker2(this.suite, this.ttype.paramList);
+      };
+      Checker2.prototype.getResult = function() {
+        if (!(this.ttype instanceof types_1.TFunc)) {
+          throw new Error("getResult() applied to non-function");
+        }
+        return new Checker2(this.suite, this.ttype.result);
+      };
+      Checker2.prototype.getType = function() {
+        return this.ttype;
+      };
+      Checker2.prototype._doCheck = function(checkerFunc, value) {
+        var noopCtx = new util_1.NoopContext();
+        if (!checkerFunc(value, noopCtx)) {
+          var detailCtx = new util_1.DetailContext();
+          checkerFunc(value, detailCtx);
+          throw detailCtx.getError(this._path);
+        }
+      };
+      Checker2.prototype._doValidate = function(checkerFunc, value) {
+        var noopCtx = new util_1.NoopContext();
+        if (checkerFunc(value, noopCtx)) {
+          return null;
+        }
         var detailCtx = new util_1.DetailContext();
         checkerFunc(value, detailCtx);
-        throw detailCtx.getError(this._path);
-      }
-    };
-    Checker2.prototype._doValidate = function(checkerFunc, value) {
-      var noopCtx = new util_1.NoopContext();
-      if (checkerFunc(value, noopCtx)) {
-        return null;
-      }
-      var detailCtx = new util_1.DetailContext();
-      checkerFunc(value, detailCtx);
-      return detailCtx.getErrorDetail(this._path);
-    };
-    Checker2.prototype._getMethod = function(methodName) {
-      var ttype = this.props.get(methodName);
-      if (!ttype) {
-        throw new Error("Type has no property " + methodName);
-      }
-      if (!(ttype instanceof types_1.TFunc)) {
-        throw new Error("Property " + methodName + " is not a method");
-      }
-      return ttype;
-    };
-    return Checker2;
-  }();
+        return detailCtx.getErrorDetail(this._path);
+      };
+      Checker2.prototype._getMethod = function(methodName) {
+        var ttype = this.props.get(methodName);
+        if (!ttype) {
+          throw new Error("Type has no property " + methodName);
+        }
+        if (!(ttype instanceof types_1.TFunc)) {
+          throw new Error("Property " + methodName + " is not a method");
+        }
+        return ttype;
+      };
+      return Checker2;
+    }()
+  );
   exports.Checker = Checker;
 })(dist2);
 var Transform = dist2.union(
@@ -74561,7 +74683,8 @@ var CJSImportTransformer = class extends Transformer {
     return true;
   }
   processExportDefault() {
-    if (this.tokens.matches4(TokenType._export, TokenType._default, TokenType._function, TokenType.name) || this.tokens.matches5(TokenType._export, TokenType._default, TokenType.name, TokenType._function, TokenType.name) && this.tokens.matchesContextualAtIndex(
+    if (this.tokens.matches4(TokenType._export, TokenType._default, TokenType._function, TokenType.name) || // export default async function
+    this.tokens.matches5(TokenType._export, TokenType._default, TokenType.name, TokenType._function, TokenType.name) && this.tokens.matchesContextualAtIndex(
       this.tokens.currentIndex() + 2,
       ContextualKeyword._async
     )) {
@@ -75042,7 +75165,8 @@ var ESMImportTransformer = class extends Transformer {
       this.tokens.removeToken();
       return true;
     }
-    const alreadyHasName = this.tokens.matches4(TokenType._export, TokenType._default, TokenType._function, TokenType.name) || this.tokens.matches5(TokenType._export, TokenType._default, TokenType.name, TokenType._function, TokenType.name) && this.tokens.matchesContextualAtIndex(
+    const alreadyHasName = this.tokens.matches4(TokenType._export, TokenType._default, TokenType._function, TokenType.name) || // export default async function
+    this.tokens.matches5(TokenType._export, TokenType._default, TokenType.name, TokenType._function, TokenType.name) && this.tokens.matchesContextualAtIndex(
       this.tokens.currentIndex() + 2,
       ContextualKeyword._async
     ) || this.tokens.matches4(TokenType._export, TokenType._default, TokenType._class, TokenType.name) || this.tokens.matches5(TokenType._export, TokenType._default, TokenType._abstract, TokenType._class, TokenType.name);
@@ -76160,59 +76284,62 @@ var build = {};
   exports.LinesAndColumns = void 0;
   var LF = "\n";
   var CR2 = "\r";
-  var LinesAndColumns = function() {
-    function LinesAndColumns2(string2) {
-      this.string = string2;
-      var offsets = [0];
-      for (var offset = 0; offset < string2.length; ) {
-        switch (string2[offset]) {
-          case LF:
-            offset += LF.length;
-            offsets.push(offset);
-            break;
-          case CR2:
-            offset += CR2.length;
-            if (string2[offset] === LF) {
+  var LinesAndColumns = (
+    /** @class */
+    function() {
+      function LinesAndColumns2(string2) {
+        this.string = string2;
+        var offsets = [0];
+        for (var offset = 0; offset < string2.length; ) {
+          switch (string2[offset]) {
+            case LF:
               offset += LF.length;
-            }
-            offsets.push(offset);
-            break;
-          default:
-            offset++;
-            break;
+              offsets.push(offset);
+              break;
+            case CR2:
+              offset += CR2.length;
+              if (string2[offset] === LF) {
+                offset += LF.length;
+              }
+              offsets.push(offset);
+              break;
+            default:
+              offset++;
+              break;
+          }
         }
+        this.offsets = offsets;
       }
-      this.offsets = offsets;
-    }
-    LinesAndColumns2.prototype.locationForIndex = function(index) {
-      if (index < 0 || index > this.string.length) {
-        return null;
-      }
-      var line = 0;
-      var offsets = this.offsets;
-      while (offsets[line + 1] <= index) {
-        line++;
-      }
-      var column = index - offsets[line];
-      return { line, column };
-    };
-    LinesAndColumns2.prototype.indexForLocation = function(location) {
-      var line = location.line, column = location.column;
-      if (line < 0 || line >= this.offsets.length) {
-        return null;
-      }
-      if (column < 0 || column > this.lengthOfLine(line)) {
-        return null;
-      }
-      return this.offsets[line] + column;
-    };
-    LinesAndColumns2.prototype.lengthOfLine = function(line) {
-      var offset = this.offsets[line];
-      var nextOffset = line === this.offsets.length - 1 ? this.string.length : this.offsets[line + 1];
-      return nextOffset - offset;
-    };
-    return LinesAndColumns2;
-  }();
+      LinesAndColumns2.prototype.locationForIndex = function(index) {
+        if (index < 0 || index > this.string.length) {
+          return null;
+        }
+        var line = 0;
+        var offsets = this.offsets;
+        while (offsets[line + 1] <= index) {
+          line++;
+        }
+        var column = index - offsets[line];
+        return { line, column };
+      };
+      LinesAndColumns2.prototype.indexForLocation = function(location) {
+        var line = location.line, column = location.column;
+        if (line < 0 || line >= this.offsets.length) {
+          return null;
+        }
+        if (column < 0 || column > this.lengthOfLine(line)) {
+          return null;
+        }
+        return this.offsets[line] + column;
+      };
+      LinesAndColumns2.prototype.lengthOfLine = function(line) {
+        var offset = this.offsets[line];
+        var nextOffset = line === this.offsets.length - 1 ? this.string.length : this.offsets[line + 1];
+        return nextOffset - offset;
+      };
+      return LinesAndColumns2;
+    }()
+  );
   exports.LinesAndColumns = LinesAndColumns;
   exports["default"] = LinesAndColumns;
 })(build);

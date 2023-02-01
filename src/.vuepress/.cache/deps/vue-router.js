@@ -15,9 +15,8 @@ import {
   unref,
   watch,
   watchEffect
-} from "./chunk-FFYGK5U6.js";
-import "./chunk-NLVKWF7H.js";
-import "./chunk-F4AF7QOS.js";
+} from "./chunk-CXZJNWNB.js";
+import "./chunk-QPKDW67T.js";
 
 // node_modules/@vue/devtools-api/lib/esm/env.js
 function getDevtoolsGlobalHook() {
@@ -1139,7 +1138,9 @@ function createRouterMatcher(routes, globalOptions) {
   }
   function insertMatcher(matcher) {
     let i = 0;
-    while (i < matchers.length && comparePathParserScore(matcher, matchers[i]) >= 0 && (matcher.record.path !== matchers[i].record.path || !isRecordChildOf(matcher, matchers[i])))
+    while (i < matchers.length && comparePathParserScore(matcher, matchers[i]) >= 0 && // Adding children with empty path should still appear before the parent
+    // https://github.com/vuejs/router/issues/1124
+    (matcher.record.path !== matchers[i].record.path || !isRecordChildOf(matcher, matchers[i])))
       i++;
     matchers.splice(i, 0, matcher);
     if (matcher.record.name && !isAliasRecord(matcher))
@@ -1458,7 +1459,8 @@ function onBeforeRouteUpdate(updateGuard) {
   registerGuard(activeRecord, "updateGuards", updateGuard);
 }
 function guardToPromiseFn(guard, to, from, record, name) {
-  const enterCallbackArray = record && (record.enterCallbacks[name] = record.enterCallbacks[name] || []);
+  const enterCallbackArray = record && // name is defined if record is because of the function overload
+  (record.enterCallbacks[name] = record.enterCallbacks[name] || []);
   return () => new Promise((resolve, reject) => {
     const next = (valid) => {
       if (valid === false) {
@@ -1768,7 +1770,9 @@ var RouterViewImpl = defineComponent({
           }
         }
       }
-      if (instance && to && (!from || !isSameRouteRecord(to, from) || !oldInstance)) {
+      if (instance && to && // if there is no instance but to and from are the same this might be
+      // the first visit
+      (!from || !isSameRouteRecord(to, from) || !oldInstance)) {
         (to.enterCallbacks[name] || []).forEach((callback) => callback(instance));
       }
     }, { flush: "post" });
@@ -2006,8 +2010,10 @@ function addDevtools(app, router, matcher) {
       let routes = matcher.getRoutes().filter((route) => !route.parent);
       routes.forEach(resetMatchStateOnRouteRecord);
       if (payload.filter) {
-        routes = routes.filter((route) => // save matches state based on the payload
-        isRouteMatching(route, payload.filter.toLowerCase()));
+        routes = routes.filter((route) => (
+          // save matches state based on the payload
+          isRouteMatching(route, payload.filter.toLowerCase())
+        ));
       }
       routes.forEach((route) => markRouteRecordActive(route, router.currentRoute.value));
       payload.rootNodes = routes.map(formatRouteRecordForInspector);
@@ -2435,7 +2441,8 @@ ${JSON.stringify(newTargetLocation, null, 2)}
         )) {
           if (// we are redirecting to the same location we were already at
           isSameRouteLocation(stringifyQuery$1, resolve(failure2.to), toLocation) && // and we have done it a couple of times
-          redirectedFrom && (redirectedFrom._count = redirectedFrom._count ? (
+          redirectedFrom && // @ts-expect-error: added only in dev
+          (redirectedFrom._count = redirectedFrom._count ? (
             // @ts-expect-error
             redirectedFrom._count + 1
           ) : 1) > 10) {

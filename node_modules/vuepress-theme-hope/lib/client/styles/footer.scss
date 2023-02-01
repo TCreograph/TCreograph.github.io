@@ -1,22 +1,32 @@
 .footer-wrapper {
+  position: relative;
+
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
 
-  padding: 0.75rem 2rem 0.75rem calc(var(--sidebar-width) + 2rem);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-inline-start: calc(var(--sidebar-space) + 2rem);
+  padding-inline-end: 2rem;
   border-top: 1px solid var(--border-color);
 
   background: var(--bg-color);
-  color: var(--dark-color);
+  color: var(--dark-grey);
 
   text-align: center;
 
   transition: border-top-color var(--color-transition),
-    background var(--color-transition);
+    background var(--color-transition), padding var(--transform-transition);
 
   @media (max-width: hope-config.$tablet) {
-    padding-left: 2rem;
+    padding-inline-start: 2rem;
+  }
+
+  @media (min-width: hope-config.$pc) {
+    z-index: 50;
+    padding-inline-start: 2rem;
   }
 
   @media print {
@@ -26,7 +36,7 @@
 
   .no-sidebar &,
   .sidebar-collapsed & {
-    padding-left: 2rem;
+    padding-inline-start: 2rem;
   }
 
   > div {
@@ -38,6 +48,10 @@
   .footer {
     margin: 0.5rem 1rem;
     font-size: 14px;
+
+    @media print {
+      display: none;
+    }
   }
 
   .copyright {

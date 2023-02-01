@@ -9,10 +9,15 @@
 
   // text
   --c-text: var(--text-color);
+  --c-text-light: var(--text-color-light);
+  --c-text-lighter: var(--text-color-lighter);
 
   // background colors
   --c-bg: var(--bg-color);
   --c-bg-light: var(--bg-color-secondary);
+  --c-bg-lighter: var(--bg-color-tertiary);
+
+  // border
   --c-border: var(--border-color);
 
   // layout
@@ -29,10 +34,15 @@
 
   // text
   --c-text: var(--text-color);
+  --c-text-light: var(--text-color-light);
+  --c-text-lighter: var(--text-color-lighter);
 
   // background
   --c-bg: var(--bg-color);
   --c-bg-light: var(--bg-color-secondary);
+  --c-bg-lighter: var(--bg-color-tertiary);
+
+  // border
   --c-border: var(--border-color);
 
   /* others */
@@ -53,12 +63,23 @@
   --code-tabs-nav-bg-color: var(--code-border-color);
   --code-tabs-nav-hover-color: var(--code-highlight-line-color);
 
+  // sidebar space
+  --sidebar-space: var(--sidebar-width);
+
   // override mobile variables
   @media (max-width: hope-config.$pad) {
     --navbar-height: var(--navbar-mobile-height);
     --navbar-vertical-padding: var(--navbar-mobile-vertical-padding);
     --navbar-horizontal-padding: var(--navbar-mobile-horizontal-padding);
     --sidebar-width: var(--sidebar-mobile-width);
+  }
+
+  @media (min-width: hope-config.$pc) {
+    --sidebar-space: clamp(
+      var(--sidebar-width),
+      calc(max(0px, calc((100vw - var(--content-width)) / 2 - 2rem))),
+      100vw
+    );
   }
 }
 
