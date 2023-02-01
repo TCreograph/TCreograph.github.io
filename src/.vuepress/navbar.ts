@@ -31,6 +31,12 @@ export const zhNavbar = navbar([
                 icon:"context",
                 link:"#"
             },
+
         ]
+    },
+    {
+        text:"编程",
+        icon:"share",
+        link:"#"
     },
 ]);
