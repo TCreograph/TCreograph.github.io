@@ -32,3 +32,9 @@ toc: true
 ![image-20230201182116073](./notes-class6.assets/image-20230201182116073.png)
 
 ![image-20230201182327269](./notes-class6.assets/image-20230201182327269.png)
+
+#### --菜单栏链接(VSCode>>>navbar.ts)
+
+![image-20230201184458302](./notes-class6.assets/image-20230201184458302.png)
+
+![image-20230201183949403](./notes-class6.assets/image-20230201183949403.png)

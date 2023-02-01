@@ -78,7 +78,7 @@ export default hopeTheme({
       blog: {
         name:"TCreograph",
         avatar:"/TCreograph2.png",//设置头像
-        description: "",
+        description: "纳西妲教教主 ~ 种门最忠诚的信徒",
         intro: "/about.md",
       },
 
