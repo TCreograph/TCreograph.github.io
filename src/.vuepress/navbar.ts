@@ -37,6 +37,18 @@ export const zhNavbar = navbar([
     {
         text:"编程",
         icon:"share",
-        link:"#"
+        children:[
+            {
+                text:"05-课堂笔记",
+                icon:"context",
+                link:"/blog/notes-class5"
+            },
+            {
+                text:"06-课堂笔记",
+                icon:"context",
+                link:"/blog/notes-class6"
+            },
+
+        ]
     },
 ]);
