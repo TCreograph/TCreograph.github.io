@@ -1,0 +1,1 @@
+import{_ as t,W as o,X as n,Y as e}from"./framework-42598678.js";const _={},s=e("p",null,"啦啦啦啦啦啦啦",-1),c=e("p",null,"kkkkk",-1),r=[s,c];function l(a,i){return o(),n("div",null,r)}const f=t(_,[["render",l],["__file","intro.html.vue"]]);export{f as default};
