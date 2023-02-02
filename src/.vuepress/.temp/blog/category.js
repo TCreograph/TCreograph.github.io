@@ -1,4 +1,4 @@
-export const categoryMap = {"category":{"/":{"path":"/category/","map":{"blog":{"path":"/category/blog/","keys":["v-afe18c4a","v-b34b3d88"]}}}},"tag":{"/":{"path":"/tag/","map":{"blog":{"path":"/tag/blog/","keys":["v-afe18c4a","v-b34b3d88"]}}}}};
+export const categoryMap = {"category":{"/":{"path":"/category/","map":{"blog":{"path":"/category/blog/","keys":["v-ac77db0c","v-afe18c4a","v-b34b3d88"]}}}},"tag":{"/":{"path":"/tag/","map":{"blog":{"path":"/tag/blog/","keys":["v-ac77db0c","v-afe18c4a","v-b34b3d88"]}}}}};
 
 if (import.meta.webpackHot) {
   import.meta.webpackHot.accept();

@@ -1,4 +1,4 @@
-export const data = JSON.parse("{\"key\":\"v-0a57ce00\",\"path\":\"/blog/Untitled.html\",\"title\":\"\",\"lang\":\"zh-CN\",\"frontmatter\":{\"description\":\"\",\"head\":[[\"meta\",{\"property\":\"og:url\",\"content\":\"https://tcreograph.com/blog/Untitled.html\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"TCreograph's Blog\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}]]},\"headers\":[],\"readingTime\":{\"minutes\":0,\"words\":0},\"filePathRelative\":\"blog/Untitled.md\",\"excerpt\":\"\",\"autoDesc\":true}")
+export const data = JSON.parse("{\"key\":\"v-0a57ce00\",\"path\":\"/blog/Untitled.html\",\"title\":\"\",\"lang\":\"zh-CN\",\"frontmatter\":{\"description\":\"\"},\"headers\":[],\"readingTime\":{\"minutes\":0,\"words\":0},\"filePathRelative\":\"blog/Untitled.md\",\"excerpt\":\"\",\"autoDesc\":true}")
 
 if (import.meta.webpackHot) {
   import.meta.webpackHot.accept()
