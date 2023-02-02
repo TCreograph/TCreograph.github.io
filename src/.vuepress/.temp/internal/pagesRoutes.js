@@ -1,5 +1,5 @@
 export const pagesRoutes = [
-  ["v-184f4da6","/intro.html",{"e":"<p>啦啦啦啦啦啦啦</p>\n<p>kkkkk</p>\n","y":"a","t":"","i":"info","I":1},["/intro","/intro.md"]],
+  ["v-184f4da6","/intro.html",{"y":"a","t":"","i":"info","I":1},["/intro","/intro.md"]],
   ["v-8daa1a0e","/",{"y":"h","t":"Blog Home","i":"home","I":1},["/index.html","/README.md"]],
   ["v-2e3eac9e","/slides.html",{"e":"<!-- markdownlint-disable MD024 MD033 MD051 -->\n","y":"s","t":"Slide page","i":"slides","I":1},["/slides","/slides.md"]],
   ["v-b34b3d88","/blog/notes-class5.html",{"a":"TCreograph","d":"2023-01-27T18:07:42.000Z","l":"2023年1月28日","c":["blog"],"g":["blog"],"u":false,"o":true,"e":"<h2> 第五课</h2>\n<h4> --创建搜索功能（VSCode&gt;&gt;&gt;config.ts)：</h4>\n<figure><figcaption>image-20230127174602679</figcaption></figure>\n<figure><figcaption>image-20230127174848413</figcaption></figure>\n<h4> --创建菜单栏 (VSCode&gt;&gt;&gt;navbar.ts)</h4>\n<figure><figcaption>image-20230127180423455</figcaption></figure>","y":"a","t":"05-课堂笔记","i":"vuejs2","I":1},["/blog/notes-class5","/blog/notes-class5.md"]],
