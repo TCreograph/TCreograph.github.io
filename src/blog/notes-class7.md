@@ -31,7 +31,7 @@ toc: true
 
 ![image-20230202181219824](./notes-class7.assets/image-20230202181219824.png)
 
-#### --创建侧边栏
+#### --创建侧边栏(VSCode>>>sidebar.ts)
 
 ![image-20230202184603015](./notes-class7.assets/image-20230202184603015.png)
 
