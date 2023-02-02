@@ -1,15 +1,15 @@
 export const searchIndex = [
   {
-    "title": "Blog Home",
+    "title": "",
     "headers": [],
-    "path": "/",
+    "path": "/intro.html",
     "pathLocale": "/",
     "extraFields": []
   },
   {
-    "title": "Intro Page",
+    "title": "Blog Home",
     "headers": [],
-    "path": "/intro.html",
+    "path": "/",
     "pathLocale": "/",
     "extraFields": []
   },
