@@ -3,7 +3,7 @@ import { sidebar } from "vuepress-theme-hope";
 export const zhSidebar = sidebar({
     "/blog/":[
         {   
-            text: "blog",
+            text: "Blog",
             icon: "context",
             children: [
                 "notes-class5",
