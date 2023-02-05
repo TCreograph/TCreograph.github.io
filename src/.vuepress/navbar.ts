@@ -17,12 +17,12 @@ export const zhNavbar = navbar([
         icon:"read",
         children:[
             {
-                text:"原神",
+                text:"Genshin Impact (原神)",
                 icon:"context",
                 link:"#"
             },
             {
-                text:"MC",
+                text:"Minecraft (我的世界)",
                 icon:"context",
                 link:"#"
             },

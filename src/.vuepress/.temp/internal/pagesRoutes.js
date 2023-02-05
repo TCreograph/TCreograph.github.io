@@ -14,5 +14,4 @@ export const pagesRoutes = [
   ["v-01560935","/timeline/",{"y":"p","t":"时间轴","I":1},["/timeline/index.html"]],
   ["v-57c5dbb5","/category/blog/",{"y":"p","t":"blog 分类","I":1},["/category/blog/index.html"]],
   ["v-2836033f","/tag/blog/",{"y":"p","t":"blog 标签","I":1},["/tag/blog/index.html"]],
-  ["v-66dedb6a","/blog/.~notes-class7.html",{"y":"a","t":"","I":1},["/blog/.~notes-class7","/blog/.~notes-class7.md"]],
 ]
