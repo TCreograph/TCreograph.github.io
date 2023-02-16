@@ -53,6 +53,11 @@ export const zhNavbar = navbar([
                 icon:"context",
                 link:"/blog/notes-class7"
             },
+            {
+                text:"08-课堂笔记",
+                icon:"context",
+                link:"/blog/notes-class8"
+            },
         ]
     },
 ]);
