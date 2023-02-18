@@ -25,3 +25,8 @@ toc: true
 
 ## 第九课
 
+#### --文章密码
+
+![image-20230218193942856](./notes-class9.assets/image-20230218193942856.png)
+
+![image-20230218194034131](./notes-class9.assets/image-20230218194034131.png)
