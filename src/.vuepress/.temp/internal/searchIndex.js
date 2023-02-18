@@ -70,13 +70,42 @@ export const searchIndex = [
     "headers": [
       {
         "level": 2,
-        "title": "--第八课",
+        "title": "第八课",
         "slug": "第八课",
         "link": "#第八课",
         "children": []
       }
     ],
     "path": "/blog/notes-class8.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "09-课堂笔记",
+    "headers": [
+      {
+        "level": 2,
+        "title": "第九课",
+        "slug": "第九课",
+        "link": "#第九课",
+        "children": []
+      }
+    ],
+    "path": "/blog/notes-class9.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "机密文件的密钥",
+    "headers": [],
+    "path": "/secret-document/key-of-secret-document.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "这是一个机密文件",
+    "headers": [],
+    "path": "/secret-document/secret-document.html",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -91,6 +120,13 @@ export const searchIndex = [
     "title": "Blog",
     "headers": [],
     "path": "/blog/",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "Secret Document",
+    "headers": [],
+    "path": "/secret-document/",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -140,6 +176,20 @@ export const searchIndex = [
     "title": "blog 标签",
     "headers": [],
     "path": "/tag/blog/",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "diary 分类",
+    "headers": [],
+    "path": "/category/diary/",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "diary 标签",
+    "headers": [],
+    "path": "/tag/diary/",
     "pathLocale": "/",
     "extraFields": []
   }

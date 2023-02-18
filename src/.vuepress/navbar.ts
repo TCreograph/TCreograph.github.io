@@ -60,4 +60,20 @@ export const zhNavbar = navbar([
             },
         ]
     },
+    {
+        text:"整活",
+        icon:"launch",
+        children:[
+            {
+                text:"这是一个机密文件",
+                icon:"lock",
+                link:"/secret-document/secret-document"
+            },
+            {
+                text:"机密文件的密钥",
+                icon:"context",
+                link:"/secret-document/key-of-secret-document"
+            },
+        ]
+    },
 ]);
