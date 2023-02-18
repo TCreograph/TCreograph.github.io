@@ -74,11 +74,6 @@ export const zhNavbar = navbar([
                 icon:"lock",
                 link:"/secret-document/secret-document"
             },
-            {
-                text:"机密文件的密钥",
-                icon:"context",
-                link:"/secret-document/key-of-secret-document"
-            },
         ]
     },
 ]);

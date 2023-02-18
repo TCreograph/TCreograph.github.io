@@ -96,13 +96,6 @@ export const searchIndex = [
     "extraFields": []
   },
   {
-    "title": "机密文件的密钥",
-    "headers": [],
-    "path": "/secret-document/key-of-secret-document.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
     "title": "这是一个机密文件",
     "headers": [],
     "path": "/secret-document/secret-document.html",
