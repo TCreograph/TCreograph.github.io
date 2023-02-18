@@ -21,5 +21,4 @@ export const pagesRoutes = [
   ["v-2836033f","/tag/blog/",{"y":"p","t":"blog 标签","I":1},["/tag/blog/index.html"]],
   ["v-b7a24a38","/category/diary/",{"y":"p","t":"diary 分类","I":1},["/category/diary/index.html"]],
   ["v-3c78b6cc","/tag/diary/",{"y":"p","t":"diary 标签","I":1},["/tag/diary/index.html"]],
-  ["v-40bd92cc","/secret-document/.~manager-key.html",{"y":"a","t":"","I":1},["/secret-document/.~manager-key","/secret-document/.~manager-key.md"]],
 ]

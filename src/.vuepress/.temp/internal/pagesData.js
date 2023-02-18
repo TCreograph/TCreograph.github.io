@@ -43,6 +43,4 @@ export const pagesData = {
   "v-b7a24a38": () => import(/* webpackChunkName: "v-b7a24a38" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/category/diary/index.html.js").then(({ data }) => data),
   // path: /tag/diary/
   "v-3c78b6cc": () => import(/* webpackChunkName: "v-3c78b6cc" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/tag/diary/index.html.js").then(({ data }) => data),
-  // path: /secret-document/.~manager-key.html
-  "v-40bd92cc": () => import(/* webpackChunkName: "v-40bd92cc" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/secret-document/.~manager-key.html.js").then(({ data }) => data),
 }
