@@ -1,0 +1,1 @@
+import{ac as s,H as t,I as a,F as e,V as c}from"./framework-dceb52a7.js";const o={},n=e("h2",{id:"第九课",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#第九课","aria-hidden":"true"},"#"),c(" 第九课")],-1),r=[n];function _(d,l){return t(),a("div",null,r)}const h=s(o,[["render",_],["__file","notes-class9.html.vue"]]);export{h as default};
