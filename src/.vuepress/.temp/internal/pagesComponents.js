@@ -45,8 +45,6 @@ export const pagesComponents = {
   "v-b7a24a38": defineAsyncComponent(() => import(/* webpackChunkName: "v-b7a24a38" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/category/diary/index.html.vue")),
   // path: /tag/diary/
   "v-3c78b6cc": defineAsyncComponent(() => import(/* webpackChunkName: "v-3c78b6cc" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/tag/diary/index.html.vue")),
-  // path: /secret-document/manager-key.html
-  "v-a1d196ec": defineAsyncComponent(() => import(/* webpackChunkName: "v-a1d196ec" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/secret-document/manager-key.html.vue")),
   // path: /secret-document/.~manager-key.html
   "v-40bd92cc": defineAsyncComponent(() => import(/* webpackChunkName: "v-40bd92cc" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/secret-document/.~manager-key.html.vue")),
 }

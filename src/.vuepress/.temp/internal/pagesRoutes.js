@@ -21,6 +21,5 @@ export const pagesRoutes = [
   ["v-2836033f","/tag/blog/",{"y":"p","t":"blog 标签","I":1},["/tag/blog/index.html"]],
   ["v-b7a24a38","/category/diary/",{"y":"p","t":"diary 分类","I":1},["/category/diary/index.html"]],
   ["v-3c78b6cc","/tag/diary/",{"y":"p","t":"diary 标签","I":1},["/tag/diary/index.html"]],
-  ["v-a1d196ec","/secret-document/manager-key.html",{"e":"<p>this-is-a-secret-document&gt;&gt;&gt;74,68,69,73,2D,69,73,2D,61,2D,73,65,63,72,65,74,2D,64,6F,63,75,6D,65,6E,74</p>\n<p>GD,FH,FI,GC,BD,FI,GC,BD,FA,BD,GC,FE,FC,GB,FE,GD,BD,FD,FF,FC,GE,FD,FE,FE,GD&gt;&gt;&gt;</p>\n<p>--. -.. --..-- ..-. .... --..-- ..-. .. --..-- --. -.-. --..-- -... -.. --..-- ..-. .. --..-- --. -.-. --..-- -... -.. --..-- ..-. .- --..-- -... -.. --..-- --. -.-. --..-- ..-. . --..-- ..-. -.-. --..-- --. -... --..-- ..-. . --..-- --. -.. --..-- -... -.. --..-- ..-. -.. --..-- ..-. ..-. --..-- ..-. -.-. --..-- --. . --..-- ..-. -.. --..-- ..-. . --..-- ..-. . --..-- --. -.. &gt;&gt;&gt;</p>","y":"a","t":"","I":1},["/secret-document/manager-key","/secret-document/manager-key.md"]],
   ["v-40bd92cc","/secret-document/.~manager-key.html",{"y":"a","t":"","I":1},["/secret-document/.~manager-key","/secret-document/.~manager-key.md"]],
 ]
