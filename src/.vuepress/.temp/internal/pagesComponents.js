@@ -17,8 +17,6 @@ export const pagesComponents = {
   "v-a90e29ce": defineAsyncComponent(() => import(/* webpackChunkName: "v-a90e29ce" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class8.html.vue")),
   // path: /blog/notes-class9.html
   "v-a5a47890": defineAsyncComponent(() => import(/* webpackChunkName: "v-a5a47890" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class9.html.vue")),
-  // path: /secret-document/key-of-secret-document.html
-  "v-2a34530e": defineAsyncComponent(() => import(/* webpackChunkName: "v-2a34530e" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/secret-document/key-of-secret-document.html.vue")),
   // path: /secret-document/secret-document.html
   "v-6039d65e": defineAsyncComponent(() => import(/* webpackChunkName: "v-6039d65e" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/secret-document/secret-document.html.vue")),
   // path: /404.html

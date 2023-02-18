@@ -15,8 +15,6 @@ export const pagesData = {
   "v-a90e29ce": () => import(/* webpackChunkName: "v-a90e29ce" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class8.html.js").then(({ data }) => data),
   // path: /blog/notes-class9.html
   "v-a5a47890": () => import(/* webpackChunkName: "v-a5a47890" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class9.html.js").then(({ data }) => data),
-  // path: /secret-document/key-of-secret-document.html
-  "v-2a34530e": () => import(/* webpackChunkName: "v-2a34530e" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/secret-document/key-of-secret-document.html.js").then(({ data }) => data),
   // path: /secret-document/secret-document.html
   "v-6039d65e": () => import(/* webpackChunkName: "v-6039d65e" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/secret-document/secret-document.html.js").then(({ data }) => data),
   // path: /404.html
