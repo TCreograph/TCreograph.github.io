@@ -15,14 +15,10 @@ export const pagesData = {
   "v-a90e29ce": () => import(/* webpackChunkName: "v-a90e29ce" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class8.html.js").then(({ data }) => data),
   // path: /blog/notes-class9.html
   "v-a5a47890": () => import(/* webpackChunkName: "v-a5a47890" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class9.html.js").then(({ data }) => data),
-  // path: /secret-document/secret-document.html
-  "v-6039d65e": () => import(/* webpackChunkName: "v-6039d65e" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/secret-document/secret-document.html.js").then(({ data }) => data),
   // path: /404.html
   "v-3706649a": () => import(/* webpackChunkName: "v-3706649a" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/404.html.js").then(({ data }) => data),
   // path: /blog/
   "v-145ac574": () => import(/* webpackChunkName: "v-145ac574" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/index.html.js").then(({ data }) => data),
-  // path: /secret-document/
-  "v-2f52c890": () => import(/* webpackChunkName: "v-2f52c890" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/secret-document/index.html.js").then(({ data }) => data),
   // path: /category/
   "v-5bc93818": () => import(/* webpackChunkName: "v-5bc93818" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/category/index.html.js").then(({ data }) => data),
   // path: /tag/
@@ -37,8 +33,4 @@ export const pagesData = {
   "v-57c5dbb5": () => import(/* webpackChunkName: "v-57c5dbb5" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/category/blog/index.html.js").then(({ data }) => data),
   // path: /tag/blog/
   "v-2836033f": () => import(/* webpackChunkName: "v-2836033f" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/tag/blog/index.html.js").then(({ data }) => data),
-  // path: /category/diary/
-  "v-b7a24a38": () => import(/* webpackChunkName: "v-b7a24a38" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/category/diary/index.html.js").then(({ data }) => data),
-  // path: /tag/diary/
-  "v-3c78b6cc": () => import(/* webpackChunkName: "v-3c78b6cc" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/tag/diary/index.html.js").then(({ data }) => data),
 }

@@ -10,7 +10,7 @@ export const zhSidebar = sidebar({
                 "notes-class6",
                 "notes-class7",
                 "notes-class8",
-                "notes-class9"
+                "notes-class9",
             ]
         }
     ],

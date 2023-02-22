@@ -96,13 +96,6 @@ export const searchIndex = [
     "extraFields": []
   },
   {
-    "title": "这是一个机密文件",
-    "headers": [],
-    "path": "/secret-document/secret-document.html",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
     "title": "",
     "headers": [],
     "path": "/404.html",
@@ -113,13 +106,6 @@ export const searchIndex = [
     "title": "Blog",
     "headers": [],
     "path": "/blog/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "Secret Document",
-    "headers": [],
-    "path": "/secret-document/",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -169,20 +155,6 @@ export const searchIndex = [
     "title": "blog 标签",
     "headers": [],
     "path": "/tag/blog/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "diary 分类",
-    "headers": [],
-    "path": "/category/diary/",
-    "pathLocale": "/",
-    "extraFields": []
-  },
-  {
-    "title": "diary 标签",
-    "headers": [],
-    "path": "/tag/diary/",
     "pathLocale": "/",
     "extraFields": []
   }
