@@ -1,1 +1,0 @@
-import{ac as t,H as c,I as a,F as e,V as r}from"./framework-dceb52a7.js";const s={},o=e("h4",{id:"这是一个机密文件",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#这是一个机密文件","aria-hidden":"true"},"#"),r(" 这是一个机密文件")],-1),n=[o];function _(d,i){return c(),a("div",null,n)}const l=t(s,[["render",_],["__file","secret-document.html.vue"]]);export{l as default};
