@@ -1,10 +1,6 @@
 import { defineClientConfig } from "@vuepress/client";
 
-import CommonWrapper from "@theme-hope/components/CommonWrapper";
-import HomePage from "@theme-hope/components/HomePage";
-import NormalPage from "@theme-hope/components/NormalPage";
-import Navbar from "@theme-hope/modules/navbar/components/Navbar";
-import Sidebar from "@theme-hope/modules/sidebar/components/Sidebar";
+import HopeIcon from "@theme-hope/components/HopeIcon";
 import Layout from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-theme-hope/lib/client/layouts/Layout.js";
 import NotFound from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-theme-hope/lib/client/layouts/NotFound.js";
 
@@ -25,7 +21,6 @@ import GlobalEncrypt from "@theme-hope/modules/encrypt/components/GlobalEncrypt"
 import LocalEncrypt from "@theme-hope/modules/encrypt/components/LocalEncrypt";
 import Slide from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-theme-hope/lib/client/layouts/Slide.js";
 
-
 export default defineClientConfig({
   enhance: ({ app, router }) => {
     const { scrollBehavior } = router.options;
@@ -38,6 +33,9 @@ export default defineClientConfig({
 
     // inject global properties
     injectDarkmode(app);
+
+    // render icon for auto-catalog
+    app.component("HopeIcon", HopeIcon);
 
     app.component("BloggerInfo", BloggerInfo);
     app.component("GlobalEncrypt", GlobalEncrypt);
@@ -58,6 +56,5 @@ export default defineClientConfig({
     BlogType,
     Timeline,
     Slide,
-    
-  }
+      }
 });
