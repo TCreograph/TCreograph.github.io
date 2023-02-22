@@ -91,7 +91,6 @@ export default hopeTheme({
 
   encrypt: {
     config: {
-      "/secret-document/secret-document": ["this-is-a-secret-document"],
       "/zh/demo/encrypt.html": ["1234"],
     },
   },
