@@ -21,6 +21,28 @@ export const searchIndex = [
     "extraFields": []
   },
   {
+    "title": "10-课堂笔记",
+    "headers": [],
+    "path": "/blog/notes-class10.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "11-课堂笔记",
+    "headers": [
+      {
+        "level": 2,
+        "title": "第十一课",
+        "slug": "第十一课",
+        "link": "#第十一课",
+        "children": []
+      }
+    ],
+    "path": "/blog/notes-class11.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
     "title": "05-课堂笔记",
     "headers": [
       {

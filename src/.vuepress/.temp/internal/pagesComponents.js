@@ -7,6 +7,10 @@ export const pagesComponents = {
   "v-8daa1a0e": defineAsyncComponent(() => import(/* webpackChunkName: "v-8daa1a0e" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/index.html.vue")),
   // path: /slides.html
   "v-2e3eac9e": defineAsyncComponent(() => import(/* webpackChunkName: "v-2e3eac9e" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/slides.html.vue")),
+  // path: /blog/notes-class10.html
+  "v-518bdda2": defineAsyncComponent(() => import(/* webpackChunkName: "v-518bdda2" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class10.html.vue")),
+  // path: /blog/notes-class11.html
+  "v-5340b641": defineAsyncComponent(() => import(/* webpackChunkName: "v-5340b641" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class11.html.vue")),
   // path: /blog/notes-class5.html
   "v-b34b3d88": defineAsyncComponent(() => import(/* webpackChunkName: "v-b34b3d88" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class5.html.vue")),
   // path: /blog/notes-class6.html

@@ -5,6 +5,10 @@ export const pagesData = {
   "v-8daa1a0e": () => import(/* webpackChunkName: "v-8daa1a0e" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/index.html.js").then(({ data }) => data),
   // path: /slides.html
   "v-2e3eac9e": () => import(/* webpackChunkName: "v-2e3eac9e" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/slides.html.js").then(({ data }) => data),
+  // path: /blog/notes-class10.html
+  "v-518bdda2": () => import(/* webpackChunkName: "v-518bdda2" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class10.html.js").then(({ data }) => data),
+  // path: /blog/notes-class11.html
+  "v-5340b641": () => import(/* webpackChunkName: "v-5340b641" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class11.html.js").then(({ data }) => data),
   // path: /blog/notes-class5.html
   "v-b34b3d88": () => import(/* webpackChunkName: "v-b34b3d88" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class5.html.js").then(({ data }) => data),
   // path: /blog/notes-class6.html

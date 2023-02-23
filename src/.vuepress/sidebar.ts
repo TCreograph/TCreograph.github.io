@@ -11,6 +11,8 @@ export const zhSidebar = sidebar({
                 "notes-class7",
                 "notes-class8",
                 "notes-class9",
+                "notes-class10",
+                "notes-class11",
             ]
         }
     ],
