@@ -25,7 +25,7 @@ toc: true
 
 ## 第十二课
 
-#### --让物体动起来
+#### --让物体动起来(PyCharm)
 
 ![image-20230308181734708](./notes-class12.assets/image-20230308181734708.png)
 
