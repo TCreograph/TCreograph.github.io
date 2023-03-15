@@ -25,10 +25,11 @@ toc: true
 
 #### --键盘活动
 
-![image-20230315175547789](./notes-class14.assets/image-20230315175547789.png)
+![image-20230315182218348](./notes-class14.assets/image-20230315182218348.png)
 
 #### --按键对应的代码
 
+```
 K_BACKSPACE   \b      backspace
 K_TAB         \t      tab
 K_CLEAR               clear
@@ -163,3 +164,7 @@ K_MENU                menu
 K_POWER               power
 K_EURO                Euro
 K_AC_BACK             Android back button
+```
+
+
+
