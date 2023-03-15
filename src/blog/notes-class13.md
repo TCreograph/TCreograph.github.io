@@ -25,7 +25,7 @@ toc: true
 
 ## 第十三课
 
-#### --Pygame绘图(PyCharm)
+#### --Pygame绘图
 
 ![image-20230313182346653](./notes-class13.assets/image-20230313182346653.png)
 

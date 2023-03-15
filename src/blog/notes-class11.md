@@ -25,7 +25,7 @@ toc: true
 
 ## 第十一课
 
-#### --编写python程序(PyCharm)
+#### --编写python程序
 
 ![image-20230223191947893](./notes-class11.assets/image-20230223191947893.png)
 
