@@ -27,7 +27,7 @@ toc: true
 
 <img src="./notes-class10.assets/image-20230222184050740.png" alt="image-20230222184050740" style="zoom:67%;" />
 
-![image-20230222184127391](./notes-class10.assets/image-20230222184127391.png)
+![image-20230320183020414](./notes-class10.assets/image-20230320183020414.png)
 
 #### --PIP? 这是什么?
 
