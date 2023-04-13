@@ -98,6 +98,11 @@ export const zhNavbar = navbar([
                 icon:"context",
                 link:"/blog/notes-class16"
             },
+            {
+                text:"19-课堂笔记 (不要找了,没有17和18)",
+                icon:"context",
+                link:"/blog/notes-class19"
+            },
         ]
     },
 ]);
