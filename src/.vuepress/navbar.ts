@@ -104,7 +104,7 @@ export const zhNavbar = navbar([
                 link:"/blog/notes-class19"
             },
             {
-                text:"20-课堂笔记 (不要找了,没有17和18)",
+                text:"20-课堂笔记",
                 icon:"context",
                 link:"/blog/notes-class20"
             },
