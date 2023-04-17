@@ -9,6 +9,18 @@ export const pagesData = {
   "v-518bdda2": () => import(/* webpackChunkName: "v-518bdda2" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class10.html.js").then(({ data }) => data),
   // path: /blog/notes-class11.html
   "v-5340b641": () => import(/* webpackChunkName: "v-5340b641" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class11.html.js").then(({ data }) => data),
+  // path: /blog/notes-class12.html
+  "v-54f58ee0": () => import(/* webpackChunkName: "v-54f58ee0" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class12.html.js").then(({ data }) => data),
+  // path: /blog/notes-class13.html
+  "v-56aa677f": () => import(/* webpackChunkName: "v-56aa677f" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class13.html.js").then(({ data }) => data),
+  // path: /blog/notes-class14.html
+  "v-585f401e": () => import(/* webpackChunkName: "v-585f401e" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class14.html.js").then(({ data }) => data),
+  // path: /blog/notes-class15.html
+  "v-5a1418bd": () => import(/* webpackChunkName: "v-5a1418bd" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class15.html.js").then(({ data }) => data),
+  // path: /blog/notes-class16.html
+  "v-5bc8f15c": () => import(/* webpackChunkName: "v-5bc8f15c" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class16.html.js").then(({ data }) => data),
+  // path: /blog/notes-class19.html
+  "v-60e77b39": () => import(/* webpackChunkName: "v-60e77b39" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class19.html.js").then(({ data }) => data),
   // path: /blog/notes-class5.html
   "v-b34b3d88": () => import(/* webpackChunkName: "v-b34b3d88" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class5.html.js").then(({ data }) => data),
   // path: /blog/notes-class6.html

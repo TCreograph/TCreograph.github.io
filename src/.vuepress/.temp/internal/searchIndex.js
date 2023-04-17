@@ -22,7 +22,15 @@ export const searchIndex = [
   },
   {
     "title": "10-课堂笔记",
-    "headers": [],
+    "headers": [
+      {
+        "level": 2,
+        "title": "第十课",
+        "slug": "第十课",
+        "link": "#第十课",
+        "children": []
+      }
+    ],
     "path": "/blog/notes-class10.html",
     "pathLocale": "/",
     "extraFields": []
@@ -39,6 +47,96 @@ export const searchIndex = [
       }
     ],
     "path": "/blog/notes-class11.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "12-课堂笔记",
+    "headers": [
+      {
+        "level": 2,
+        "title": "第十二课",
+        "slug": "第十二课",
+        "link": "#第十二课",
+        "children": []
+      }
+    ],
+    "path": "/blog/notes-class12.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "13-课堂笔记",
+    "headers": [
+      {
+        "level": 2,
+        "title": "第十三课",
+        "slug": "第十三课",
+        "link": "#第十三课",
+        "children": []
+      }
+    ],
+    "path": "/blog/notes-class13.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "14-课堂笔记",
+    "headers": [
+      {
+        "level": 2,
+        "title": "第十四课",
+        "slug": "第十四课",
+        "link": "#第十四课",
+        "children": []
+      }
+    ],
+    "path": "/blog/notes-class14.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "15-课堂笔记",
+    "headers": [
+      {
+        "level": 2,
+        "title": "第十五课",
+        "slug": "第十五课",
+        "link": "#第十五课",
+        "children": []
+      }
+    ],
+    "path": "/blog/notes-class15.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "16-课堂笔记",
+    "headers": [
+      {
+        "level": 2,
+        "title": "第十六课",
+        "slug": "第十六课",
+        "link": "#第十六课",
+        "children": []
+      }
+    ],
+    "path": "/blog/notes-class16.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "19-课堂笔记",
+    "headers": [
+      {
+        "level": 2,
+        "title": "第十九课",
+        "slug": "第十九课",
+        "link": "#第十九课",
+        "children": []
+      }
+    ],
+    "path": "/blog/notes-class19.html",
     "pathLocale": "/",
     "extraFields": []
   },
