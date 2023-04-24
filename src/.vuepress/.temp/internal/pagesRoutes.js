@@ -26,4 +26,5 @@ export const pagesRoutes = [
   ["v-01560935","/timeline/",{"y":"p","t":"时间轴","I":0},["/timeline/index.html"]],
   ["v-57c5dbb5","/category/blog/",{"y":"p","t":"blog 分类","I":0},["/category/blog/index.html"]],
   ["v-2836033f","/tag/blog/",{"y":"p","t":"blog 标签","I":0},["/tag/blog/index.html"]],
+  ["v-ec486bbe","/blog/notes-class22.html",{"y":"a","t":"22-课堂笔记","i":"vuejs2"},["/blog/notes-class22","/blog/notes-class22.md"]],
 ]

@@ -53,4 +53,6 @@ export const pagesData = {
   "v-57c5dbb5": () => import(/* webpackChunkName: "v-57c5dbb5" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/category/blog/index.html.js").then(({ data }) => data),
   // path: /tag/blog/
   "v-2836033f": () => import(/* webpackChunkName: "v-2836033f" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/tag/blog/index.html.js").then(({ data }) => data),
+  // path: /blog/notes-class22.html
+  "v-ec486bbe": () => import(/* webpackChunkName: "v-ec486bbe" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class22.html.js").then(({ data }) => data),
 }
