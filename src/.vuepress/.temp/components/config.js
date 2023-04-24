@@ -7,7 +7,6 @@ import Badge from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plug
 import FontIcon from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-components/lib/client/components/FontIcon.js";
 import BackToTop from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-components/lib/client/components/BackToTop.js";
 
-
 import "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-components/lib/client/styles/sr-only.scss";
 
 export default defineClientConfig({
@@ -18,11 +17,10 @@ export default defineClientConfig({
   },
   setup: () => {
       useStyleTag(`\
-      @import url("//at.alicdn.com/t/c/font_2410206_5vb9zlyghj.css");
-      `);
+  @import url("https://at.alicdn.com/t/c/font_2410206_5vb9zlyghj.css");
+  `);
   },
   rootComponents: [
-    () => h(BackToTop, { threshold: 300 }),
-    
+    () => h(BackToTop, {}),
   ],
 });

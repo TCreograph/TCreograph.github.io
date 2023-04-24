@@ -23,6 +23,10 @@ export const pagesComponents = {
   "v-5bc8f15c": defineAsyncComponent(() => import(/* webpackChunkName: "v-5bc8f15c" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class16.html.vue")),
   // path: /blog/notes-class19.html
   "v-60e77b39": defineAsyncComponent(() => import(/* webpackChunkName: "v-60e77b39" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class19.html.vue")),
+  // path: /blog/notes-class20.html
+  "v-f31bce3a": defineAsyncComponent(() => import(/* webpackChunkName: "v-f31bce3a" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class20.html.vue")),
+  // path: /blog/notes-class21.html
+  "v-efb21cfc": defineAsyncComponent(() => import(/* webpackChunkName: "v-efb21cfc" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class21.html.vue")),
   // path: /blog/notes-class5.html
   "v-b34b3d88": defineAsyncComponent(() => import(/* webpackChunkName: "v-b34b3d88" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class5.html.vue")),
   // path: /blog/notes-class6.html

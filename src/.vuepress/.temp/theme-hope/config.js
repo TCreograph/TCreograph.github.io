@@ -1,25 +1,14 @@
 import { defineClientConfig } from "@vuepress/client";
 
-import HopeIcon from "@theme-hope/components/HopeIcon";
-import Layout from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-theme-hope/lib/client/layouts/Layout.js";
-import NotFound from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-theme-hope/lib/client/layouts/NotFound.js";
+import { HopeIcon, Layout, NotFound, useScrollPromise, injectDarkmode, setupDarkmode, setupSidebarItems } from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-theme-hope/lib/bundle/export.js";
 
-import { useScrollPromise } from "@theme-hope/composables/index";
-import { injectDarkmode, setupDarkmode } from "@theme-hope/modules/outlook/composables/index";
-import { setupSidebarItems } from "@theme-hope/modules/sidebar/composables/index";
+import { BlogCategory, BlogHome, BlogType, BloggerInfo, Timeline, setupBlog } from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-theme-hope/lib/bundle/modules/blog/export.js";
+import "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-theme-hope/lib/bundle/modules/blog/styles/all.scss";
+import { GlobalEncrypt, LocalEncrypt } from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-theme-hope/lib/bundle/modules/encrypt/export.js";
+import "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-theme-hope/lib/bundle/modules/encrypt/styles/all.scss"
+import Slide from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-md-enhance/lib/client/SlidePage.js";
 
-import "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-theme-hope/lib/client/styles/index.scss";
-
-import BloggerInfo from "@theme-hope/modules/blog/components/BloggerInfo";
-import { setupBlog } from "@theme-hope/modules/blog/composables/index";
-import BlogCategory from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-theme-hope/lib/client/modules/blog/layouts/BlogCategory.js";
-import BlogHome from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-theme-hope/lib/client/modules/blog/layouts/BlogHome.js";
-import BlogType from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-theme-hope/lib/client/modules/blog/layouts/BlogType.js";
-import Timeline from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-theme-hope/lib/client/modules/blog/layouts/Timeline.js";
-import "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-theme-hope/lib/client/modules/blog/styles/layout.scss";
-import GlobalEncrypt from "@theme-hope/modules/encrypt/components/GlobalEncrypt";
-import LocalEncrypt from "@theme-hope/modules/encrypt/components/LocalEncrypt";
-import Slide from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-theme-hope/lib/client/layouts/Slide.js";
+import "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-theme-hope/lib/bundle/styles/all.scss";
 
 export default defineClientConfig({
   enhance: ({ app, router }) => {
@@ -40,13 +29,11 @@ export default defineClientConfig({
     app.component("BloggerInfo", BloggerInfo);
     app.component("GlobalEncrypt", GlobalEncrypt);
     app.component("LocalEncrypt", LocalEncrypt);
-    
   },
   setup: () => {
     setupDarkmode();
     setupSidebarItems();
     setupBlog();
-    
   },
   layouts: {
     Layout,
@@ -56,5 +43,5 @@ export default defineClientConfig({
     BlogType,
     Timeline,
     Slide,
-      }
+  }
 });

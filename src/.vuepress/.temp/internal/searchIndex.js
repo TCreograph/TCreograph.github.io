@@ -141,6 +141,36 @@ export const searchIndex = [
     "extraFields": []
   },
   {
+    "title": "20-课堂笔记",
+    "headers": [
+      {
+        "level": 2,
+        "title": "第二十课",
+        "slug": "第二十课",
+        "link": "#第二十课",
+        "children": []
+      }
+    ],
+    "path": "/blog/notes-class20.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "21-课堂笔记",
+    "headers": [
+      {
+        "level": 2,
+        "title": "第二十一课",
+        "slug": "第二十一课",
+        "link": "#第二十一课",
+        "children": []
+      }
+    ],
+    "path": "/blog/notes-class21.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
     "title": "05-课堂笔记",
     "headers": [
       {

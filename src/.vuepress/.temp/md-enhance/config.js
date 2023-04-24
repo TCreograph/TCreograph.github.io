@@ -9,24 +9,23 @@ import ECharts from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-pl
 import "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-md-enhance/lib/client/styles/figure.scss";
 import FlowChart from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-md-enhance/lib/client/components/FlowChart.js";
 import "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-md-enhance/lib/client/styles/footnote.scss";
-import "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-md-enhance/lib/client/styles/image-mark.scss";
+import "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-md-enhance/lib/client/styles/image-mark.scss"
 import Mermaid from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-md-enhance/lib/client/components/Mermaid.js";
+import "D:/TCreograph/TCreograph.github.io/node_modules/reveal.js/dist/reveal.css";
 import Presentation from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-md-enhance/lib/client/components/Presentation.js";
 import Playground from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-md-enhance/lib/client/components/Playground.js";
 import Tabs from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-md-enhance/lib/client/components/Tabs.js";
 import "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-md-enhance/lib/client/styles/tasklist.scss";
+import "D:/TCreograph/TCreograph.github.io/node_modules/katex/dist/katex.min.css";
 import "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-md-enhance/lib/client/styles/katex.scss";
 import { defineAsyncComponent } from "vue";
 
-
 export default defineClientConfig({
   enhance: ({ app }) => {
-    app.component("ChartJS", ChartJS);
+    app.component("ChartJS", ChartJS)
     app.component("CodeTabs", CodeTabs);
-    if(!hasGlobalComponent("CodeGroup", app))
-      app.component("CodeGroup", CodeGroup);
-    if(!hasGlobalComponent("CodeGroupItem", app))
-      app.component("CodeGroupItem", CodeGroupItem);
+    if(!hasGlobalComponent("CodeGroup", app)) app.component("CodeGroup", CodeGroup);
+    if(!hasGlobalComponent("CodeGroupItem", app)) app.component("CodeGroupItem", CodeGroupItem);
     app.component("CodeDemo", CodeDemo);
     app.component("ECharts", ECharts);
     app.component("FlowChart", FlowChart);
@@ -35,6 +34,6 @@ export default defineClientConfig({
     app.component("Playground", Playground);
     app.component("Tabs", Tabs);
     app.component("VuePlayground", defineAsyncComponent(() => import("D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-md-enhance/lib/client/components/VuePlayground.js")));
-        
+    
   },
 });
