@@ -23,6 +23,7 @@ export const zhSidebar = sidebar({
                 "notes-class21",
                 "notes-class22",
                 "notes-class23",
+                "notes-class24",
             ]
         }
     ],
