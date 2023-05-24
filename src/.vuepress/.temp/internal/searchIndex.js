@@ -171,6 +171,81 @@ export const searchIndex = [
     "extraFields": []
   },
   {
+    "title": "22-课堂笔记",
+    "headers": [
+      {
+        "level": 2,
+        "title": "第二十二课",
+        "slug": "第二十二课",
+        "link": "#第二十二课",
+        "children": []
+      }
+    ],
+    "path": "/blog/notes-class22.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "23课堂笔记",
+    "headers": [
+      {
+        "level": 2,
+        "title": "第二十三课",
+        "slug": "第二十三课",
+        "link": "#第二十三课",
+        "children": []
+      }
+    ],
+    "path": "/blog/notes-class23.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "24-课堂笔记",
+    "headers": [
+      {
+        "level": 2,
+        "title": "第二十四课",
+        "slug": "第二十四课",
+        "link": "#第二十四课",
+        "children": []
+      }
+    ],
+    "path": "/blog/notes-class24.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "27-课堂笔记",
+    "headers": [
+      {
+        "level": 2,
+        "title": "第二十七课",
+        "slug": "第二十七课",
+        "link": "#第二十七课",
+        "children": []
+      }
+    ],
+    "path": "/blog/notes-class27.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "28-课堂笔记",
+    "headers": [
+      {
+        "level": 2,
+        "title": "第二十八课",
+        "slug": "第二十八课",
+        "link": "#第二十八课",
+        "children": []
+      }
+    ],
+    "path": "/blog/notes-class28.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
     "title": "05-课堂笔记",
     "headers": [
       {

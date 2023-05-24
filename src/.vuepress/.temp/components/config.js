@@ -1,8 +1,8 @@
 import { defineClientConfig } from "@vuepress/client";
-import { hasGlobalComponent } from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-components/lib/client/shared.js";
+import { hasGlobalComponent } from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-shared/lib/client/index.js";
 import { h } from "vue";
 
-import { useStyleTag } from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-components/lib/client/vueuse.js";
+import { useStyleTag } from "D:/TCreograph/TCreograph.github.io/node_modules/@vueuse/core/index.mjs";
 import Badge from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-components/lib/client/components/Badge.js";
 import FontIcon from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-components/lib/client/components/FontIcon.js";
 import BackToTop from "D:/TCreograph/TCreograph.github.io/node_modules/vuepress-plugin-components/lib/client/components/BackToTop.js";

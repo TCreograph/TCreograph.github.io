@@ -18,9 +18,9 @@ import {
   unref,
   watch,
   watchEffect
-} from "./chunk-AWA6B2ZS.js";
-import "./chunk-JXWQMH7G.js";
-import "./chunk-OZI5HTJH.js";
+} from "./chunk-AQDTH7GJ.js";
+import "./chunk-DDKVHXSX.js";
+import "./chunk-TFWDKVI3.js";
 
 // node_modules/vue-router/dist/vue-router.mjs
 var isBrowser = typeof window !== "undefined";
@@ -112,6 +112,10 @@ function resolveRelativePath(to, from) {
     return from;
   const fromSegments = from.split("/");
   const toSegments = to.split("/");
+  const lastToSegment = toSegments[toSegments.length - 1];
+  if (lastToSegment === ".." || lastToSegment === ".") {
+    toSegments.push("");
+  }
   let position = fromSegments.length - 1;
   let toPosition;
   let segment;
@@ -286,7 +290,9 @@ function useHistoryListeners(base, historyState, currentLocation, replace) {
     window.removeEventListener("beforeunload", beforeUnloadListener);
   }
   window.addEventListener("popstate", popStateHandler);
-  window.addEventListener("beforeunload", beforeUnloadListener);
+  window.addEventListener("beforeunload", beforeUnloadListener, {
+    passive: true
+  });
   return {
     pauseListeners,
     listen,
@@ -1672,7 +1678,8 @@ var RouterView = RouterViewImpl;
 function warnDeprecatedUsage() {
   const instance = getCurrentInstance();
   const parentName = instance.parent && instance.parent.type.name;
-  if (parentName && (parentName === "KeepAlive" || parentName.includes("Transition"))) {
+  const parentSubTreeType = instance.parent && instance.parent.subTree && instance.parent.subTree.type;
+  if (parentName && (parentName === "KeepAlive" || parentName.includes("Transition")) && typeof parentSubTreeType === "object" && parentSubTreeType.name === "RouterView") {
     const comp = parentName === "KeepAlive" ? "keep-alive" : "transition";
     warn(`<router-view> can no longer be used directly inside <transition> or <keep-alive>.
 Use slot props instead:
@@ -2139,8 +2146,7 @@ function createRouter(options) {
     if ("path" in rawLocation) {
       if ("params" in rawLocation && !("name" in rawLocation) && // @ts-expect-error: the type is never
       Object.keys(rawLocation.params).length) {
-        warn(`Path "${// @ts-expect-error: the type is never
-        rawLocation.path}" was passed with params but they will be ignored. Use a named route alongside params instead.`);
+        warn(`Path "${rawLocation.path}" was passed with params but they will be ignored. Use a named route alongside params instead.`);
       }
       matcherLocation = assign({}, rawLocation, {
         path: parseURL(parseQuery$1, rawLocation.path, currentLocation.path).path
@@ -2153,7 +2159,7 @@ function createRouter(options) {
         }
       }
       matcherLocation = assign({}, rawLocation, {
-        params: encodeParams(rawLocation.params)
+        params: encodeParams(targetParams)
       });
       currentLocation.params = encodeParams(currentLocation.params);
     }
@@ -2292,8 +2298,9 @@ ${JSON.stringify(newTargetLocation, null, 2)}
           (redirectedFrom._count = redirectedFrom._count ? (
             // @ts-expect-error
             redirectedFrom._count + 1
-          ) : 1) > 10) {
-            warn(`Detected an infinite redirection in a navigation guard when going from "${from.fullPath}" to "${toLocation.fullPath}". Aborting to avoid a Stack Overflow. This will break in production if not fixed.`);
+          ) : 1) > 30) {
+            warn(`Detected a possibly infinite redirection in a navigation guard when going from "${from.fullPath}" to "${toLocation.fullPath}". Aborting to avoid a Stack Overflow.
+ Are you always returning a new location within a navigation guard? That would lead to this error. Only return when redirecting or aborting, that should fix this. This might break in production if not fixed.`);
             return Promise.reject(new Error("Infinite redirect in navigation guard"));
           }
           return pushWithRedirect(
@@ -2319,6 +2326,10 @@ ${JSON.stringify(newTargetLocation, null, 2)}
   function checkCanceledNavigationAndReject(to, from) {
     const error = checkCanceledNavigation(to, from);
     return error ? Promise.reject(error) : Promise.resolve();
+  }
+  function runWithContext(fn) {
+    const app = installedApps.values().next().value;
+    return app && typeof app.runWithContext === "function" ? app.runWithContext(fn) : fn();
   }
   function navigate(to, from) {
     let guards;
@@ -2380,8 +2391,9 @@ ${JSON.stringify(newTargetLocation, null, 2)}
     ) ? err : Promise.reject(err));
   }
   function triggerAfterEach(to, from, failure) {
-    for (const guard of afterGuards.list())
-      guard(to, from, failure);
+    for (const guard of afterGuards.list()) {
+      runWithContext(() => guard(to, from, failure));
+    }
   }
   function finalizeNavigation(toLocation, from, isPush, replace2, data) {
     const error = checkCanceledNavigation(toLocation, from);
@@ -2584,10 +2596,10 @@ ${JSON.stringify(newTargetLocation, null, 2)}
       }
     }
   };
+  function runGuardQueue(guards) {
+    return guards.reduce((promise, guard) => promise.then(() => runWithContext(guard)), Promise.resolve());
+  }
   return router;
-}
-function runGuardQueue(guards) {
-  return guards.reduce((promise, guard) => promise.then(() => guard()), Promise.resolve());
 }
 function extractChangingRecords(to, from) {
   const leavingRecords = [];
@@ -2646,8 +2658,8 @@ export {
 
 vue-router/dist/vue-router.mjs:
   (*!
-    * vue-router v4.1.6
-    * (c) 2022 Eduardo San Martin Morote
+    * vue-router v4.2.1
+    * (c) 2023 Eduardo San Martin Morote
     * @license MIT
     *)
 */

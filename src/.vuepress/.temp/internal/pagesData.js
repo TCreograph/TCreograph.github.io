@@ -25,6 +25,16 @@ export const pagesData = {
   "v-f31bce3a": () => import(/* webpackChunkName: "v-f31bce3a" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class20.html.js").then(({ data }) => data),
   // path: /blog/notes-class21.html
   "v-efb21cfc": () => import(/* webpackChunkName: "v-efb21cfc" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class21.html.js").then(({ data }) => data),
+  // path: /blog/notes-class22.html
+  "v-ec486bbe": () => import(/* webpackChunkName: "v-ec486bbe" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class22.html.js").then(({ data }) => data),
+  // path: /blog/notes-class23.html
+  "v-e8deba80": () => import(/* webpackChunkName: "v-e8deba80" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class23.html.js").then(({ data }) => data),
+  // path: /blog/notes-class24.html
+  "v-e5750942": () => import(/* webpackChunkName: "v-e5750942" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class24.html.js").then(({ data }) => data),
+  // path: /blog/notes-class27.html
+  "v-db37f588": () => import(/* webpackChunkName: "v-db37f588" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class27.html.js").then(({ data }) => data),
+  // path: /blog/notes-class28.html
+  "v-d7ce444a": () => import(/* webpackChunkName: "v-d7ce444a" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class28.html.js").then(({ data }) => data),
   // path: /blog/notes-class5.html
   "v-b34b3d88": () => import(/* webpackChunkName: "v-b34b3d88" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class5.html.js").then(({ data }) => data),
   // path: /blog/notes-class6.html
@@ -53,6 +63,4 @@ export const pagesData = {
   "v-57c5dbb5": () => import(/* webpackChunkName: "v-57c5dbb5" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/category/blog/index.html.js").then(({ data }) => data),
   // path: /tag/blog/
   "v-2836033f": () => import(/* webpackChunkName: "v-2836033f" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/tag/blog/index.html.js").then(({ data }) => data),
-  // path: /blog/notes-class22.html
-  "v-ec486bbe": () => import(/* webpackChunkName: "v-ec486bbe" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class22.html.js").then(({ data }) => data),
 }
