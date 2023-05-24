@@ -14,7 +14,7 @@ export const zhNavbar = navbar([
             {
                 text:"一篇由ChatGPT写的小说......",
                 icon:"context",
-                link:"diary-novel-01"
+                link:"/diary/diary-novel-01"
             },
         ]
     },
