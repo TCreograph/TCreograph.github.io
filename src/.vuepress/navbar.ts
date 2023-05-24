@@ -10,7 +10,13 @@ export const zhNavbar = navbar([
     {
         text:"日记",
         icon:"creative",
-        link:"#"
+        children:[
+            {
+                text:"一篇由ChatGPT写的小说......",
+                icon:"context",
+                link:"diary-novel-01"
+            },
+        ]
     },
     {
         text:"游戏攻略",

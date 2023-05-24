@@ -321,6 +321,13 @@ export const searchIndex = [
     "extraFields": []
   },
   {
+    "title": "一篇由ChatGPT写的小说",
+    "headers": [],
+    "path": "/diary/diary-novel-01.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
     "title": "",
     "headers": [],
     "path": "/404.html",
@@ -331,6 +338,13 @@ export const searchIndex = [
     "title": "Blog",
     "headers": [],
     "path": "/blog/",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "Diary",
+    "headers": [],
+    "path": "/diary/",
     "pathLocale": "/",
     "extraFields": []
   },
@@ -380,6 +394,20 @@ export const searchIndex = [
     "title": "blog 标签",
     "headers": [],
     "path": "/tag/blog/",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "diary 分类",
+    "headers": [],
+    "path": "/category/diary/",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "diary 标签",
+    "headers": [],
+    "path": "/tag/diary/",
     "pathLocale": "/",
     "extraFields": []
   }

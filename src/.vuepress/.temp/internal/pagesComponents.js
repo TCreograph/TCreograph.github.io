@@ -47,10 +47,14 @@ export const pagesComponents = {
   "v-a90e29ce": defineAsyncComponent(() => import(/* webpackChunkName: "v-a90e29ce" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class8.html.vue")),
   // path: /blog/notes-class9.html
   "v-a5a47890": defineAsyncComponent(() => import(/* webpackChunkName: "v-a5a47890" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/notes-class9.html.vue")),
+  // path: /diary/diary-novel-01.html
+  "v-5c080990": defineAsyncComponent(() => import(/* webpackChunkName: "v-5c080990" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/diary/diary-novel-01.html.vue")),
   // path: /404.html
   "v-3706649a": defineAsyncComponent(() => import(/* webpackChunkName: "v-3706649a" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/404.html.vue")),
   // path: /blog/
   "v-145ac574": defineAsyncComponent(() => import(/* webpackChunkName: "v-145ac574" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/blog/index.html.vue")),
+  // path: /diary/
+  "v-7a372905": defineAsyncComponent(() => import(/* webpackChunkName: "v-7a372905" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/diary/index.html.vue")),
   // path: /category/
   "v-5bc93818": defineAsyncComponent(() => import(/* webpackChunkName: "v-5bc93818" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/category/index.html.vue")),
   // path: /tag/
@@ -65,4 +69,8 @@ export const pagesComponents = {
   "v-57c5dbb5": defineAsyncComponent(() => import(/* webpackChunkName: "v-57c5dbb5" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/category/blog/index.html.vue")),
   // path: /tag/blog/
   "v-2836033f": defineAsyncComponent(() => import(/* webpackChunkName: "v-2836033f" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/tag/blog/index.html.vue")),
+  // path: /category/diary/
+  "v-b7a24a38": defineAsyncComponent(() => import(/* webpackChunkName: "v-b7a24a38" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/category/diary/index.html.vue")),
+  // path: /tag/diary/
+  "v-3c78b6cc": defineAsyncComponent(() => import(/* webpackChunkName: "v-3c78b6cc" */"D:/TCreograph/TCreograph.github.io/src/.vuepress/.temp/pages/tag/diary/index.html.vue")),
 }

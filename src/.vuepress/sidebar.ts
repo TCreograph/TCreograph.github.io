@@ -27,6 +27,13 @@ export const zhSidebar = sidebar({
                 "notes-class27",
                 "notes-class28",
             ]
+        },
+        {   
+            text: "Blog",
+            icon: "context",
+            children: [
+                "diary-novel-01",
+            ]
         }
     ],
 });
