@@ -62,6 +62,7 @@ public class PlayerControl : MonoBehaviour
 {
     pubilc void Jump()
     {
+        //TODO：执行跳跃，跳跃的距离，记录分数，播放跳跃的音效
         //创建一个默认的函数写法
         //带有 public 标识的代码，其他类都可以调用
         // void 没有返回类型

@@ -128,6 +128,16 @@ export const zhNavbar = navbar([
                 icon:"context",
                 link:"/blog/notes-class24"
             },
+            {
+                text:"27-课堂笔记 (不要找了,没有25和26)",
+                icon:"context",
+                link:"/blog/notes-class27"
+            },
+            {
+                text:"28-课堂笔记",
+                icon:"context",
+                link:"/blog/notes-class28"
+            },
         ]
     },
 ]);
